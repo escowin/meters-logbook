@@ -81,18 +81,49 @@ const meters = [
         "morning practice | mixed quad, 2 seat, blue-green, 20-26spm step",
       noteErg: "afternoon practice | ",
     },
+    thursday: {
+      date: "2022.11.17",
+      row: 0,
+      erg: 0,
+      noteRow: "",
+      noteErg: "",
+    },
+    friday: {
+      date: "2022.11.18",
+      row: 0,
+      erg: 0,
+      noteRow: "",
+      noteErg: "",
+    },
+    saturday: {
+      date: "2022.11.19",
+      row: 0,
+      erg: 0,
+      noteRow: "",
+      noteErg: "",
+    },
+    sunday: {
+      date: "2022.11.20",
+      row: 0,
+      erg: 0,
+      noteRow: "",
+      noteErg: "",
+    },
   },
 ];
-// console.log(meters[0].days[0].total)
 
-// function weeklyResult(data) {
-//     console.log(data)
-// }
-
-function currentResults(meters) {
+function currentTotal(meters) {
   for (let i = 0; i < meters.length; i++) {
-    console.log(meters[i].monday);
-    // weeklyResult(meters[i])
+    const monday = meters[i].monday.row + meters[i].monday.erg;
+    const tuesday = meters[i].tuesday.row + meters[i].tuesday.erg;
+    const wednesday = meters[i].wednesday.row + meters[i].wednesday.erg;
+    const thursday = meters[i].thursday.row + meters[i].thursday.erg;
+    const friday = meters[i].friday.row + meters[i].friday.erg;
+    const saturday = meters[i].saturday.row + meters[i].saturday.erg;
+    const sunday = meters[i].sunday.row + meters[i].sunday.erg;
+
+    let weeklyTotals = monday + tuesday + wednesday + thursday + friday + saturday + sunday;
+    console.log(weeklyTotals)
   }
 }
-currentResults(meters);
+currentTotal(meters);
