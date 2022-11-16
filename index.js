@@ -128,6 +128,7 @@ function currentTotal(meters) {
 
     let week = monday + tuesday + wednesday + thursday + friday + saturday + sunday;
     total.push(week);
+    console.log(total)
   }
 
   return `
