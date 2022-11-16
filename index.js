@@ -1,6 +1,7 @@
 const meters = [
   {
     week: "week one | 2022.11.07 - 2022.11.13",
+    // might restructure monday - sunday objects as an array of objects
     monday: {
       date: "2022.11.07",
       row: 0,
@@ -113,6 +114,9 @@ const meters = [
 ];
 
 function currentTotal(meters) {
+  let total = [];
+  const initialValue = 0;
+
   for (let i = 0; i < meters.length; i++) {
     const monday = meters[i].monday.row + meters[i].monday.erg;
     const tuesday = meters[i].tuesday.row + meters[i].tuesday.erg;
@@ -122,8 +126,12 @@ function currentTotal(meters) {
     const saturday = meters[i].saturday.row + meters[i].saturday.erg;
     const sunday = meters[i].sunday.row + meters[i].sunday.erg;
 
-    let weeklyTotals = monday + tuesday + wednesday + thursday + friday + saturday + sunday;
-    console.log(weeklyTotals)
+    let week = monday + tuesday + wednesday + thursday + friday + saturday + sunday;
+    total.push(week);
   }
+
+  return `
+  total :  ${total.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue)} meters
+  `
 }
-currentTotal(meters);
+console.log(currentTotal(meters));
