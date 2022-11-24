@@ -4,7 +4,7 @@ const meters = [
     // might restructure monday - sunday objects as an array of objects
     monday: {
       date: "2022.11.07",
-      row: 0,
+      row: 7667,
       erg: 2967 + 2695 + 2691 + 1746,
       noteRow:
         "morning practice | mark hamilton, purple-white, TRC to Red Bud to Lamar to TRC",
@@ -13,14 +13,14 @@ const meters = [
     },
     tuesday: {
       date: "2022.11.08",
-      erg: 10000,
       row: 0,
+      erg: 10000,
       noteRow: "",
       noteErg: "",
     },
     wednesday: {
       date: "2022.11.09",
-      row: 0,
+      row: 7648,
       erg: 2092 + 1904 + 2574 + 2720,
       noteRow:
         "morning practice | pimon, blue-green, TRC to Red Bud to Lamar to TRC",
@@ -29,14 +29,14 @@ const meters = [
     },
     thursday: {
       date: "2022.11.10",
-      erg: 0,
       row: 0,
+      erg: 0,
       noteRow: "rest day",
       noteErg: "",
     },
     friday: {
       date: "2022.11.11",
-      row: 0,
+      row: 8460,
       erg: 10000,
       noteRow:
         "morning practice | mixed quad, 2 seat, TRC to Red Bud to Lamar to Mopac to TRC",
@@ -51,7 +51,7 @@ const meters = [
     },
     sunday: {
       date: "2022.11.13",
-      row: 0,
+      row: 6733,
       erg: 10000,
       noteRow:
         "afternoon practice | pimon, blue-green, TRC to Mopac to Lamar to Mopac to Lamar to TRC",
@@ -62,15 +62,15 @@ const meters = [
     week: "week 02 | 2022.11.14 - 2022.11.20",
     monday: {
       date: "2022.11.14",
+      erg: 3050 + 2016 + 2060 + 1556,
       row: 0,
-      erg: 0,
       noteRow: "morning rain",
       noteErg: "afternoon practice | ",
     },
     tuesday: {
       date: "2022.11.15",
-      erg: 10000,
       row: 0,
+      erg: 10000,
       noteRow: "",
       noteErg: "",
     },
@@ -86,26 +86,78 @@ const meters = [
     thursday: {
       date: "2022.11.17",
       row: 0,
-      erg: 0,
+      erg: 10000,
       noteRow: "",
       noteErg: "",
     },
     friday: {
       date: "2022.11.18",
+      row: 9590,
+      erg: 10000,
+      noteRow: "mixed quad, 2 seat, the masters, blue-green",
+      noteErg: "",
+    },
+    saturday: {
+      date: "2022.11.19",
+      row: 9236,
+      erg: 21030,
+      noteRow: "morning practice; 24, blue-green",
+      noteErg: "2 hours",
+    },
+    sunday: {
+      date: "2022.11.20",
+      row: 7255,
+      erg: 9632 + 10000,
+      noteRow: "",
+      noteErg: "",
+    },
+  },
+  {
+    week: "week 03 | 2022.11.21 - 2022.11.27",
+    monday: {
+      date: "2022.11.21",
+      row: 0,
+      erg: 7538 + 2813 + 4654,
+      noteRow: "morning practice cancelled",
+      noteErg: "afternoon practice | ",
+    },
+    tuesday: {
+      date: "2022.11.22",
+      row: 0,
+      erg: 1711 + 9000,
+      noteRow: "",
+      noteErg: "",
+    },
+    wednesday: {
+      date: "2022.11.23",
+      row: 0,
+      erg: 11715 + 12091,
+      noteRow: "",
+      noteErg: "",
+    },
+    thursday: {
+      date: "2022.11.24",
+      row: 0,
+      erg: 0,
+      noteRow: "",
+      noteErg: "",
+    },
+    friday: {
+      date: "2022.11.25",
       row: 0,
       erg: 0,
       noteRow: "",
       noteErg: "",
     },
     saturday: {
-      date: "2022.11.19",
+      date: "2022.11.26",
       row: 0,
       erg: 0,
       noteRow: "",
       noteErg: "",
     },
     sunday: {
-      date: "2022.11.20",
+      date: "2022.11.27",
       row: 0,
       erg: 0,
       noteRow: "",

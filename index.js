@@ -1,10 +1,22 @@
 // dependencies
-const meters = require('./meters');
+const meters = require("./meters");
 
+let total = [];
+const initialValue = 0;
+
+// logic | current date
+function currentYear() {
+  let date = new Date().getFullYear();
+  return date;
+}
 // logic | summing up the weekly & current totals
 function currentTotal(meters) {
-  let total = [];
-  const initialValue = 0;
+  console.log(`
+===============================
+    million meter challenge
+    \u00A9 ${currentYear()} Edwin M. Escobar
+===============================
+  `);
 
   for (let i = 0; i < meters.length; i++) {
     let date = meters[i].week;
@@ -20,13 +32,21 @@ function currentTotal(meters) {
       monday + tuesday + wednesday + thursday + friday + saturday + sunday;
     total.push(week);
     console.log(`${date} : ${week} meters`);
+    console.log(`  mon : ${monday} meters
+  tue : ${tuesday} meters
+  wed : ${wednesday} meters
+  thu : ${thursday} meters
+  fri : ${friday} meters
+  sat : ${saturday} meters
+  sun : ${sunday} meters
+  `);
   }
 
   return `
-total :  ${total.reduce(
+  total : ${total.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     initialValue
-  )} meters
-  `;
+  )} meters`;
 }
+
 console.log(currentTotal(meters));
