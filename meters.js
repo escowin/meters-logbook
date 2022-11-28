@@ -159,7 +159,7 @@ const meters = [
     sunday: {
       date: "2022.11.27",
       row: 9177,
-      erg: 6181,
+      erg: 6181 + 8387,
       noteRow: "morning",
       noteErg: "8, port 2 seat",
     },

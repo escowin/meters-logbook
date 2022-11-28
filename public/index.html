@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
-    <script defer src="./assets/js/index.js"></script>
+    <script defer src="./assets/js/script.js"></script>
     <title>Million Meter Challenge Logbook</title>
   </head>
   <body>
@@ -25,16 +25,19 @@
 
       <section id="daily-stats">
         <!-- populate with data -->
-        <h2 class="week" id="stats-header">
-          daily stats <span id="week">week-02 | november 21 - 27</span>
-        </h2>
-        <article class="daily-stats" id="week-02">
+
+        <article class="stats-header" id="week-02">
+          <h2 class="sub-header" id="stats-header">
+            daily stats <span id="week">week-02 | november 21 - 27</span>
+          </h2>
           <div class="fields">
-            <p class="day"><span class="date">date</span> day</p>
-            <p class="workout">workout</p>
-            <p class="meters">meters</p>
-            <p class="notes">notes</p>
+            <p>date</p>
+            <p>workout</p>
+            <p>meters</p>
+            <p>notes</p>
           </div>
+        </article>
+        <article class="stats-container">
           <div class="stats">
             <p class="day"><span class="date">Nov 21</span> monday</p>
             <p class="cardio-type">erg</p>
@@ -51,11 +54,12 @@
       <!-- button that user can click on to copy weekly breakdown stats -->
     </main>
     <footer>
-      &copy;<span id="year"></span>
+      &copy;
       <a
         href="https://github.com/escowin/million-meter-challenge"
         target="_blank"
-        >Edwin M. Escobar</a
+        ><span id="year"></span>
+        </a
       >
     </footer>
   </body>
