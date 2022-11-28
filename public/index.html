@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <script defer src="./assets/js/index.js"></script>
+    <title>Million Meter Challenge Logbook</title>
+  </head>
+  <body>
+    <header>
+      <h1>Million Meter Challenge Logbook</h1>
+      <nav>
+        <ul id="nav-links">
+          <li><a href="#">daily</a></li>
+          <li><a href="#">weekly</a></li>
+          <li><a href="#">overall</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- input form -->
+
+      <section id="daily-stats">
+        <!-- populate with data -->
+        <h2 class="week" id="stats-header">
+          daily stats <span id="week">week-02 | november 21 - 27</span>
+        </h2>
+        <article class="daily-stats" id="week-02">
+          <div class="fields">
+            <p class="day"><span class="date">date</span> day</p>
+            <p class="cardio-type">cardio type</p>
+            <p class="meters">meters</p>
+            <p class="notes">notes</p>
+          </div>
+          <div class="stats">
+            <p class="day"><span class="date">Nov 21</span> monday</p>
+            <p class="cardio-type">erg</p>
+            <p class="meters">10000m</p>
+            <p class="notes">morning</p>
+          </div>
+          <!-- populate article with subsequent divs w/ array data. each day index is a div -->
+        </article>
+      </section>
+
+      <!-- weekly stats. day by day totals -->
+      <!-- overall stats. week by week & overall totals -->
+      <!-- scoreboard -->
+    </main>
+    <footer>
+      &copy;<span id="year"></span>
+      <a
+        href="https://github.com/escowin/million-meter-challenge"
+        target="_blank"
+        >Edwin M. Escobar</a
+      >
+    </footer>
+  </body>
+</html>
