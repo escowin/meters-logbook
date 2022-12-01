@@ -164,6 +164,58 @@ const meters = [
       noteErg: "8, port 2 seat",
     },
   },
+  {
+    week: "week 04 | 2022.11.28 - 2022.12.04",
+    monday: {
+      date: "2022.11.28",
+      row: 9937,
+      erg: 4419 + 3515,
+      noteRow: "double, stroke seat",
+      noteErg: "evening practice",
+    },
+    tuesday: {
+      date: "2022.11.29",
+      row: 0,
+      erg: 6242 + 20000,
+      noteRow: "",
+      noteErg: "",
+    },
+    wednesday: {
+      date: "2022.11.30",
+      row: 0,
+      erg: 30000,
+      noteRow: "slept in",
+      noteErg: "home, morning & late night",
+    },
+    thursday: {
+      date: "2022.12.01",
+      row: 0,
+      erg: 30000,
+      noteRow: "",
+      noteErg: "home morning",
+    },
+    friday: {
+      date: "2022.12.02",
+      row: 0,
+      erg: 30000,
+      noteRow: "",
+      noteErg: "",
+    },
+    saturday: {
+      date: "2022.12.03",
+      row: 0,
+      erg: 30000,
+      noteRow: "",
+      noteErg: "",
+    },
+    sunday: {
+      date: "2022.12.04",
+      row: 0,
+      erg: 30000,
+      noteRow: "",
+      noteErg: "",
+    },
+  },
 ];
 
 module.exports = meters;
