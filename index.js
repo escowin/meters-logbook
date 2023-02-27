@@ -31,19 +31,20 @@ function currentTotal(meters) {
     let week =
       monday + tuesday + wednesday + thursday + friday + saturday + sunday;
     total.push(week);
-    console.log(`${date} : ${week} meters`);
-    console.log(`  mon : ${monday} meters
-  tue : ${tuesday} meters
-  wed : ${wednesday} meters
-  thu : ${thursday} meters
-  fri : ${friday} meters
-  sat : ${saturday} meters
-  sun : ${sunday} meters
+    console.log(`${date} `);
+    console.log(`  Monday : ${monday} meters
+  Tuesday : ${tuesday} meters
+  Wednesday : ${wednesday} meters
+  Thursday : ${thursday} meters
+  Friday : ${friday} meters
+  Saturday : ${saturday} meters
+  Sunday : ${sunday} meters
+
+  Week total :  ${week} meters
   `);
   }
 
-  return `
-  total : ${total.reduce(
+  return `  Overall total : ${total.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     initialValue
   )} meters`;
