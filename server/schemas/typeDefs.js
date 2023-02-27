@@ -13,8 +13,8 @@ const typeDefs = gql`
     activity: String
     meters: Int
     adjustedMeters: Int
-    date: String
     username: String
+    date: String
     createdAt: String
   }
 
