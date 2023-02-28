@@ -3,7 +3,9 @@ header, nav, .links {
 }
 
 header {
+    background: var(--dark-overlay);
     align-items: center;
+    padding: 0 .25rem;
 }
 
 nav, .links {
