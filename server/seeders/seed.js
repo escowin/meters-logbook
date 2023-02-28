@@ -25,25 +25,12 @@ const mockUser = {
 };
 
 // workouts
-const activity = chance.pickone([
-  "running",
-  "swimming",
-  "cycling",
-  "rowing",
-  "paddleboarding",
-]);
+const activity = chance.pickone(["kayaking", "rowing", "paddleboarding"]);
 const meters = chance.integer({ min: 1, max: 50000 });
-let adjustedMeters;
-
-if (activity === "paddleboarding") {
-  adjustedMeters = meters * 3;
-} else {
-  adjustedMeters = meters;
-}
+const adjustedMeters = activity === "paddleboarding" ? meters * 3 : meters;
 
 const mockWorkout = {
-    _id: 
-  activity,
+  _id: activity,
   meters,
   adjustedMeters,
   username: chance.word({ syllables: 2 }),
