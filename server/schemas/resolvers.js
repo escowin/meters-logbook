@@ -65,7 +65,7 @@ const resolvers = {
       if (context.user) {
         const workout = await Workout.create({
           ...args,
-          user: context.user._id,
+          username: context.user.username,
         });
 
         await User.findByIdAndUpdate(
