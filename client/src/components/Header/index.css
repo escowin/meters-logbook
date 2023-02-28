@@ -1,0 +1,16 @@
+header, nav, .links {
+    display: flex;
+}
+
+header {
+    align-items: center;
+}
+
+nav, .links {
+    flex-grow: 1;
+}
+
+.links {
+    justify-content: space-around;
+}
+
