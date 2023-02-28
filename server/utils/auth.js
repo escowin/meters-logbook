@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 // optional | secrets should be stored in .env
 const secret = "mysecretshh";
-const expiration = "99h";
+const expiration = "10h";
 
 module.exports = {
     // expects user object & adds user's properties to the token
