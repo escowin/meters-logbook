@@ -2,8 +2,6 @@ const { User, Workout } = require("../models");
 const { AuthenticationError } = require("apollo-server-express"); // handles wrong username/password errors
 const { signToken } = require("../utils/auth");
 
-// Resolvers: functions connected to each query or mutation type definition that perform the CRUD actions that each query or mutation is expected to perform.
-
 const resolvers = {
   Query: {
     // get
@@ -67,7 +65,7 @@ const resolvers = {
       if (context.user) {
         const workout = await Workout.create({
           ...args,
-          username: context.user.username,
+          user: context.user._id,
         });
 
         await User.findByIdAndUpdate(
@@ -76,7 +74,7 @@ const resolvers = {
           { new: true }
         );
 
-        return thought;
+        return workout;
       }
       throw new AuthenticationError("you ned to be logged in");
     },
