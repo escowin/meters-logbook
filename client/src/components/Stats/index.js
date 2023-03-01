@@ -1,6 +1,6 @@
 import "./index.css";
 
-function Profile() {
+function Stats() {
   // placeholder variables
   const meters = [
     { name: "total", meters: 75000 },
@@ -37,7 +37,7 @@ function Profile() {
           {meters.map((distance, i) => (
             <>
               <p key={`time${i}`}>{distance.name}</p>
-              <p key={`${i}`} className="distance">
+              <p key={`dist${i}`} className="distance">
                 {distance.meters}m
               </p>
             </>
@@ -63,7 +63,7 @@ function Profile() {
         </article>
 
         {dailyActivities.map((activity, i) => (
-          <article key={i} className="activity">
+          <article key={`activity${i}`} className="activity">
             <p>{i + 1}</p>
             <p>{activity.activity}</p>
             <p>{activity.meters}m</p>
@@ -76,4 +76,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Stats;
