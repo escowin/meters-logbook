@@ -1,6 +1,9 @@
-function SignUp() {
+import './forms.css';
+
+function Signup() {
   return (
     <form className="signup-form">
+      <h2>Sign up</h2>
       <label htmlFor="username">username</label>
       <input name="username"></input>
 
@@ -10,11 +13,9 @@ function SignUp() {
       <label htmlFor="password">password</label>
       <input name="password"></input>
 
-      <button type="submit">
-        sign up
-      </button>
+      <button type="submit">submit</button>
     </form>
   );
 }
 
-export default SignUp
+export default Signup;

@@ -1,12 +1,12 @@
 :root {
   --red: hsla(0, 92%, 41%, 0.85);
-  --blue: hsla(228, 71%, 48%, 0.75);
+  --blue: hsla(211, 83%, 56%, 0.831);
   --white: hsla(0, 24%, 94%, 0.75);
-  --light-text: hsla(0, 24%, 94%, 0.65);
+  --light-text: hsla(0, 24%, 94%, 0.75);
   --dark-text: hsl(227, 78%, 7%);
   --bg-overlay: hsla(0, 0%, 100%, 0.1);
   --focus: hsla(0, 0%, 100%, 0.50);
-  --dark-overlay: hsla(0, 0%, 0%, 0.5);
+  --dark-overlay: hsla(0, 0%, 0%, 0.75);
   --box-shadow: 0 0 .5rem;
 }
 
@@ -38,53 +38,12 @@ main {
   padding: 1rem;
 }
 
-/* form styles */
-form {
-  background: var(--dark-overlay);
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: .75rem .5rem;
-  width: 75vw;
-  padding: 1rem;
-  border-radius: .25rem;
-}
-
-form input {
-  background-color: transparent;
-  border: none;
-  border-radius: .15rem;
-  padding: .125rem .5rem;
-  font-variant: normal;
-  color: var(--light-text);
-  transition: 1s;
-}
-
-form input:focus {
-  background-color: var(--focus);
-  color: var(--dark-text);
-  outline: none;
-}
-
-form button {
-  grid-column: span 2;
-  border-radius: .25rem;
-  border: none;
-  padding: .125rem;
-  transition: 1s;
-  background-color: var(--blue);
-}
-
-button:active, button:hover {
-  background-color: var(--red);
-  outline: 1px solid var(--dark-overlay);
-}
-
 /* typography */
 ol, ul {
   list-style: none;
 }
 
-a, .link, button {
+a, .link {
   color: inherit;
   text-decoration: none;
   transition: 1s color;

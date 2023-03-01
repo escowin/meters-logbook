@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import SignUp from './components/SignUp';
+import Signup from './pages/Signup';
+// import Login from './pages/Login';
 import './App.css';
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <>
       <Header/>
       <main>
-        <SignUp/>
+        <Signup/>
         {/* <Login/> */}
       </main>
       <Footer date={date}/>
