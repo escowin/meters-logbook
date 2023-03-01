@@ -1,6 +1,6 @@
 :root {
   --red: hsla(0, 92%, 41%, 0.85);
-  --blue: hsla(211, 83%, 56%, 0.831);
+  --blue: hsla(211, 68%, 50%, 0.831);
   --white: hsla(0, 24%, 94%, 0.75);
   --light-text: hsla(0, 24%, 94%, 0.75);
   --dark-text: hsl(227, 78%, 7%);
@@ -36,15 +36,29 @@ main {
   flex-grow: 1;
   align-items: center;
   padding: 1rem;
+  gap: 2rem;
 }
 
 /* typography */
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-a, .link {
+a,
+.link {
   color: inherit;
   text-decoration: none;
   transition: 1s color;
+}
+
+/* display */
+.display-lg {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .display-lg {
+    display: block;
+  }
 }

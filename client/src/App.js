@@ -1,8 +1,9 @@
+import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Signup from './pages/Signup';
+// import Signup from './pages/Signup';
 // import Login from './pages/Login';
-import './App.css';
+import Profile from './components/Profile';
 
 function App() {
   const date = new Date().getFullYear();
@@ -11,8 +12,9 @@ function App() {
     <>
       <Header/>
       <main>
-        <Signup/>
+        {/* <Signup/> */}
         {/* <Login/> */}
+        <Profile/>
       </main>
       <Footer date={date}/>
     </>

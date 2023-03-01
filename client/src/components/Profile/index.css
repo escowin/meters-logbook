@@ -1,0 +1,85 @@
+section {
+    background-color: var(--dark-overlay);
+    border-radius: .25rem;
+    padding: .5rem 1rem 2rem 1rem;
+    width: 95vw;
+}
+
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1rem;
+}
+
+.stats h2 {
+    grid-column: span 2;
+}
+
+.meters {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .5rem 1rem;
+    align-items: center;
+}
+
+.distance {
+    text-align: end;
+}
+
+.graph {
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: var(--white);
+}
+
+/* today's activities */
+.daily-log {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+}
+
+.add-btn {
+    --size: 10vw;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    outline: none;
+}
+
+.activity-header,
+.activity {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1.5rem repeat(3, 1fr);
+    text-align: end;
+    gap: 1rem;
+}
+
+.activity-header {
+    border-bottom: 1px solid var(--light-text);
+    padding-bottom: .5rem;
+}
+
+@media screen and (min-width: 1024px) {
+
+    .stats {
+        width: fit-content;
+    }
+
+    .add-btn {
+        --size: 5vh;
+    }
+
+    .activity-header,
+    .activity {
+        grid-template-columns: 2rem 6rem repeat(2, 10rem) auto;
+    }
+
+    .activity {
+        border-radius: .25rem;
+        background-color: var(--blue);
+        padding: .25rem 1rem;
+    }
+}
