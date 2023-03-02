@@ -11,9 +11,9 @@ import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
-// import Signup from './pages/Signup';
+import Signup from './pages/Signup';
 import Login from "./pages/Login";
-import Stats from './components/Stats';
+import Profile from './components/Profile';
 
 // establishes a new graphql server link
 const httpLink = createHttpLink({
@@ -47,8 +47,9 @@ function App() {
           <main>
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/profile' element={<Profile />} />
               <Route path="/login" element={<Login />} />
-              {/* <Route path='/signup' element={<Signup />} /> */}
+              <Route path='/signup' element={<Signup />} />
             </Routes>
           </main>
           <Footer date={date} />

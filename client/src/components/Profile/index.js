@@ -1,6 +1,6 @@
 import "./index.css";
 
-function Stats() {
+function Profile() {
   // placeholder variables
   const meters = [
     { name: "total", meters: 75000 },
@@ -76,4 +76,4 @@ function Stats() {
   );
 }
 
-export default Stats;
+export default Profile;

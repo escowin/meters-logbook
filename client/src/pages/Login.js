@@ -6,16 +6,17 @@ import './forms.css';
 import Auth from '../utils/auth';
 
 function Login(props) {
-  const [formState, setFormState] = useState[{ username: '', password: '' }];
+  const [formState, setFormState] = useState({ username: '', password: '' });
 
   // updates state on form input changes
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
+
     setFormState({
       ...formState,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   const [login, { error }] = useMutation(LOGIN_USER);
 
@@ -26,11 +27,9 @@ function Login(props) {
       const { data } = await login({
         variables: { ...formState }
       })
-      console.log(data)
 
       // redirects to homepage after login
       Auth.login(data.login.token)
-      console.log(Auth)
     } catch (e) {
       console.error(e)
     }
