@@ -8,12 +8,14 @@ import { setContext } from "@apollo/client/link/context"; // retrieves jwt every
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // spa appears as mpa
 
 import "./App.css";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import Footer from "./components/Footer";
-import Signup from './pages/Signup';
 import Login from "./pages/Login";
+import Page404 from "./pages/Page404";
 import Profile from './components/Profile';
+import Signup from './pages/Signup';
+import SingleWorkout from "./pages/SingleWorkout";
 
 // establishes a new graphql server link
 const httpLink = createHttpLink({
@@ -47,9 +49,15 @@ function App() {
           <main>
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route path='/profile' element={<Profile />} />
+              {/* <Route path='/profile'>
+                <Route path=':username' element={<Profile />} />
+                <Route path="" element={<Profile />} />
+              </Route> */}
               <Route path="/login" element={<Login />} />
+              <Route path='/profile' element={<Profile />} />
               <Route path='/signup' element={<Signup />} />
+              <Route path="/workout/:id" element={<SingleWorkout />} />
+              <Route path="*" element={<Page404 />} />
             </Routes>
           </main>
           <Footer date={date} />

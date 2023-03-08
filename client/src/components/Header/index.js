@@ -1,13 +1,35 @@
-import './index.css'
+import { Link } from "react-router-dom";
+import "./index.css";
 
 function Header() {
+  const navLinks = [
+    {
+      name: "sign up",
+      path: "signup"
+    },
+    {
+      name: "log in",
+      path: "login"
+    },
+    // {
+    //   name: "stats",
+    //   path: "stats"
+    // }
+  ]
+
   return (
     <header>
-      <h1>Meters logbook</h1>
+      <Link to="/">
+        <h1>Logbook</h1>
+      </Link>
+
       <nav>
         <ul className="links">
-          <li>sign up</li>
-          <li>login</li>
+          {navLinks.map((navLink, i) => (
+            <li key={i}>
+              <Link to={`/${navLink.path}`}>{navLink.name}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
