@@ -7,6 +7,7 @@ import {
 import { setContext } from "@apollo/client/link/context"; // retrieves jwt everytime a graphql req is made
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // spa appears as mpa
 
+// spa mimicing mpa to do | sort out components & pages. pages get the react router treatment 
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
