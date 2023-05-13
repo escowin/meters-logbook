@@ -3,11 +3,11 @@ const { AuthenticationError } = require("apollo-server-express"); // handles wro
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
+  // get requests
   Query: {
-    // get
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user })
+        const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
           .populate("workouts");
 
@@ -17,15 +17,7 @@ const resolvers = {
       throw new AuthenticationError("not logged in");
     },
 
-    workouts: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Workout.find(params).sort({ createdAt: -1 });
-    },
-
-    workout: async (parent, { _id }) => {
-      return Thought.findOne({ _id });
-    },
-
+    // user queries
     users: async () => {
       return User.find().select("-__v -password").populate("workouts");
     },
@@ -35,10 +27,20 @@ const resolvers = {
         .select("-__v -password")
         .populate("workouts");
     },
+
+    // workout queries
+    workouts: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Workout.find(params).sort({ createdAt: -1 });
+    },
+
+    workout: async (parent, { _id }) => {
+      return Workout.findOne({ _id });
+    },
   },
 
+  // post, put, delete requests
   Mutation: {
-    // post, put, delete
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
@@ -61,6 +63,7 @@ const resolvers = {
       return { token, user };
     },
 
+    // accessible to logged in users
     addWorkout: async (parent, args, context) => {
       if (context.user) {
         const workout = await Workout.create({

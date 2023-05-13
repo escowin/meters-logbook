@@ -8,10 +8,10 @@ const workoutSchema = new Schema(
       required: "define the activity",
     },
     meters: {
-        type: Number,
-        required: "enter meters",
-        minlength: 1,
-        maxlength: 99999,
+      type: Number,
+      required: "enter meters",
+      minlength: 1,
+      maxlength: 99999,
     },
     adjustedMeters: {
       type: Number,
@@ -24,18 +24,18 @@ const workoutSchema = new Schema(
       required: true,
     },
     date: {
-        type: String,
-        required: "enter date"
+      type: String,
+      required: "enter date",
     },
     notes: {
       type: String,
-      maxlength: 200
+      maxlength: 200,
     },
     createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
+      type: Date,
+      default: Date.now,
+      get: (timestamp) => dateFormat(timestamp),
+    },
   },
   {
     toJSON: {
@@ -44,6 +44,6 @@ const workoutSchema = new Schema(
   }
 );
 
-const Workout = model('Workout', workoutSchema);
+const Workout = model("Workout", workoutSchema);
 
 module.exports = Workout;
