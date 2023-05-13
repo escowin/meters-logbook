@@ -1,4 +1,9 @@
+# files
 .DS_store
-node_modules
 .env
-package-lock.json
+package-lock.json*
+
+# directories
+node_modules*
+
+# 'git rm --cached ...' removes specified tracked files & directories 
