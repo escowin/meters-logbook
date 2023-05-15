@@ -3,31 +3,33 @@ import "./index.css";
 
 function Header() {
   const navLinks = [
-    {
-      name: "sign up",
-      path: "signup"
-    },
-    {
-      name: "log in",
-      path: "login"
-    },
     // {
-    //   name: "stats",
-    //   path: "stats"
-    // }
+    //   name: "sign up",
+    //   path: "signup"
+    // },
+    // {
+    //   name: "log in",
+    //   path: "login"
+    // },
+    {
+      name: "home",
+      path: "home"
+    }
   ]
 
   return (
     <header>
-      <Link to="/">
+      {/* <Link to="/"> */}
         <h1>Logbook</h1>
-      </Link>
+      {/* </Link> */}
 
       <nav>
         <ul className="links">
           {navLinks.map((navLink, i) => (
             <li key={i}>
-              <Link to={`/${navLink.path}`}>{navLink.name}</Link>
+              {/* <Link to={`/${navLink.path}`}> */}
+                {navLink.name}
+              {/* </Link> */}
             </li>
           ))}
         </ul>
