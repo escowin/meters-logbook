@@ -3,18 +3,18 @@ import "./index.css";
 
 function Header() {
   const navLinks = [
-    // {
-    //   name: "sign up",
-    //   path: "signup"
-    // },
-    // {
-    //   name: "log in",
-    //   path: "login"
-    // },
     {
       name: "home",
       path: "home"
-    }
+    },
+    {
+      name: "log in",
+      path: "login"
+    },
+    {
+      name: "sign up",
+      path: "signup"
+    },
   ]
 
   return (

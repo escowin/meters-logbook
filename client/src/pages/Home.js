@@ -11,14 +11,13 @@ function Home() {
   const workouts = data?.workouts || [];
 
   return (
-    <>
-      <h1>homepage</h1>
+    <section>
       {loading ? (
         <div>loading...</div>
       ) : (
         <WorkoutList workouts={workouts} title="total workouts" />
       )}
-    </>
+    </section>
   );
 }
 

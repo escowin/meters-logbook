@@ -35,10 +35,23 @@ main {
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
-  padding: 1rem;
+  padding: .5rem;
   gap: 2rem;
+  overflow-y: scroll;
 }
 
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--dark-overlay);
+  padding: 1rem;
+  border-radius: .25rem;
+}
+
+h2 {
+  border-bottom: 2px solid var(--bg-overlay);
+}
 /* typography */
 ol,
 ul {

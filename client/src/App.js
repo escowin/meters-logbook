@@ -23,7 +23,7 @@ import Header from "./components/Header";
 
 // establishes connection to backend server graphql endpoint
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: "/graphql",
 });
 
 const client = new ApolloClient({
