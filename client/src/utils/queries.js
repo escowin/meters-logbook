@@ -45,3 +45,19 @@ export const QUERY_WORKOUTS = gql`
     }
   }
 `;
+
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      workouts {
+        _id
+        date
+        activity
+        meters
+      }
+    }
+  }
+`

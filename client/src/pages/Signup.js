@@ -1,4 +1,4 @@
-import './forms.css';
+import '../assets/styles/forms.css';
 
 function Signup() {
   return (

@@ -37,10 +37,12 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
+      {/* components for client-side routing */}
       <Router>
         <Header />
         <main>
           <Routes>
+            {/* uses url parameters in React Router for dynamic page content */}
             <Route path="/" element={<Home />} />
             <Route path="/profile" >
               <Route path=":username" element={<Profile/>}/>

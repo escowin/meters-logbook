@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from '../utils/mutations'
 
-import './forms.css';
+import '../assets/styles/forms.css';
 import Auth from '../utils/auth';
 
 function Login(props) {
@@ -30,8 +30,8 @@ function Login(props) {
 
       // redirects to homepage after login
       Auth.login(data.login.token)
-    } catch (e) {
-      console.error(e)
+    } catch (err) {
+      console.error(error)
     }
 
     // clears form values
