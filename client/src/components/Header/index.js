@@ -8,6 +8,10 @@ function Header() {
       path: "home"
     },
     {
+      name: "profile",
+      path: "profile"
+    },
+    {
       name: "log in",
       path: "login"
     },
@@ -19,17 +23,17 @@ function Header() {
 
   return (
     <header>
-      {/* <Link to="/"> */}
+      <Link to="/">
         <h1>Logbook</h1>
-      {/* </Link> */}
+      </Link>
 
       <nav>
         <ul className="links">
           {navLinks.map((navLink, i) => (
             <li key={i}>
-              {/* <Link to={`/${navLink.path}`}> */}
+              <Link to={`/${navLink.path}`}>
                 {navLink.name}
-              {/* </Link> */}
+              </Link>
             </li>
           ))}
         </ul>

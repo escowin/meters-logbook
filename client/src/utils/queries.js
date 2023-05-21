@@ -18,18 +18,19 @@ import { gql } from "@apollo/client";
 //   }
 // `;
 
-// export const QUERY_WORKOUT = gql`
-//   query workout($id: ID!) {
-//     workout(_id: %id) {
-//       _id
-//       activity
-//       meters
-//       adjustedMeters
-//       date
-//       notes
-//     }
-//   }
-// `;
+export const QUERY_WORKOUT = gql`
+  query workout($id: ID!) {
+    workout(_id: $id) {
+      _id
+      activity
+      meters
+      adjustedMeters
+      date
+      notes
+      username
+    }
+  }
+`;
 
 export const QUERY_WORKOUTS = gql`
   query workouts($username: String) {
@@ -40,6 +41,7 @@ export const QUERY_WORKOUTS = gql`
       adjustedMeters
       date
       notes
+      username
     }
   }
 `;

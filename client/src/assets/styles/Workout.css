@@ -1,0 +1,8 @@
+.workout {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.workout h2 {
+    grid-column: span 2;
+}
