@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client'
-import { LOGIN_USER } from '../utils/mutations'
-
-import '../assets/styles/forms.css';
-import Auth from '../utils/auth';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
+import "../assets/styles/forms.css";
 
 function Login(props) {
-  const [formState, setFormState] = useState({ username: '', password: '' });
+  const [formState, setFormState] = useState({ username: "", password: "" });
+  const [login, { error }] = useMutation(LOGIN_USER);
 
   // updates state on form input changes
   const handleChange = (event) => {
@@ -18,47 +18,48 @@ function Login(props) {
     });
   };
 
-  const [login, { error }] = useMutation(LOGIN_USER);
-
   // handles form submission
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const { data } = await login({
-        variables: { ...formState }
-      })
+        variables: { ...formState },
+      });
 
       // redirects to homepage after login
       Auth.login(data.login.token)
-    } catch (err) {
-      console.error(error)
+    } catch (e) {
+      console.error(e);
     }
 
     // clears form values
-    setFormState({ username: '', password: ''})
-  }
+    // setFormState({ username: "", password: "" });
+  };
 
   return (
-    <form className="login-form" onSubmit={handleFormSubmit}>
-      <h2 className="header">Login</h2>
+    <>
+      <form className="login-form" onSubmit={handleFormSubmit}>
+        <h2 className="header">Login</h2>
 
-      <label htmlFor="username">username</label>
-      <input
-       name="username"
-       value={formState.username}
-       onChange={handleChange}
-      />
+        <label htmlFor="username">username</label>
+        <input
+          name="username"
+          value={formState.username}
+          onChange={handleChange}
+        />
 
-      <label htmlFor="password">password</label>
-      <input
-       name="password"
-       type="password"
-       value={formState.password}
-       onChange={handleChange}
-      />
+        <label htmlFor="password">password</label>
+        <input
+          name="password"
+          type="password"
+          value={formState.password}
+          onChange={handleChange}
+        />
 
-      <button type="submit">submit</button>
-    </form>
+        <button type="submit">submit</button>
+      </form>
+      {error && <section>Login failed</section>}
+    </>
   );
 }
 

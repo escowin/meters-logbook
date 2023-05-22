@@ -4,7 +4,7 @@ import {
   InMemoryCache, // enables apollo client instance to cache api response data. lets user perform efficient requests
   createHttpLink, // controls how apollo client makes a request. middleware for outbound network requests.
 } from "@apollo/client";
-// import { setContext } from "@apollo/client/link/context"; // retrieves jwt everytime a graphql req is made
+import { setContext } from "@apollo/client/link/context"; // retrieves jwt everytime a graphql req is made
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // spa appears as mpa
 
 import "./App.css";
@@ -26,10 +26,24 @@ const httpLink = createHttpLink({
   uri: "/graphql",
 });
 
+// first parameter not used for this const, underscore serves as a placeholder
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("id_token");
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+
 const client = new ApolloClient({
-  link: httpLink,
+  // security | combining auth & httplink objects allows every request to retrieve jwt & sets req headders before making api request
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+
+
 
 function App() {
   const date = new Date().getFullYear();
@@ -44,11 +58,11 @@ function App() {
           <Routes>
             {/* uses url parameters in React Router for dynamic page content */}
             <Route path="/" element={<Home />} />
-            <Route path="/profile" >
-              <Route path=":username" element={<Profile/>}/>
-              <Route path="" element={<Profile/>}/>
+            <Route path="/profile">
+              <Route path=":username" element={<Profile />} />
+              <Route path="" element={<Profile />} />
             </Route>
-            <Route path="/workout/:id" element={<Workout/>}/>
+            <Route path="/workout/:id" element={<Workout />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="*" element={<Page404 />} />

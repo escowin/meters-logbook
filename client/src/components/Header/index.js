@@ -1,26 +1,24 @@
 import { Link } from "react-router-dom";
+import Auth from "../../utils/auth";
 import "./index.css";
 
 function Header() {
   const navLinks = [
     {
       name: "home",
-      path: "home"
+      path: "home",
     },
     {
-      name: "profile",
-      path: "profile"
+      name: "me",
+      path: "profile",
     },
-    {
-      name: "log in",
-      path: "login"
-    },
-    {
-      name: "sign up",
-      path: "signup"
-    },
-  ]
+  ];
 
+  const logout = e => {
+    e.preventDefault();
+    Auth.logout();
+  };
+  
   return (
     <header>
       <Link to="/">
@@ -29,13 +27,25 @@ function Header() {
 
       <nav>
         <ul className="links">
-          {navLinks.map((navLink, i) => (
-            <li key={i}>
-              <Link to={`/${navLink.path}`}>
-                {navLink.name}
-              </Link>
-            </li>
-          ))}
+          {Auth.loggedIn() ? (
+            <>
+              {navLinks.map((navLink, i) => (
+                <li key={i}>
+                  <Link to={`/${navLink.path}`}>{navLink.name}</Link>
+                </li>
+              ))}
+              <a href="/" onClick={logout}>Logout</a>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">Log in</Link>
+              </li>
+              <li>
+                <Link to="/signup">sign up</Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>
