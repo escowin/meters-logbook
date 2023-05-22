@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_WORKOUT } from "../utils/queries";
-import "../assets/styles/Workout.css";
+import "../assets/styles/workout.css";
 
 function Workout() {
   const { id: workoutId } = useParams();
