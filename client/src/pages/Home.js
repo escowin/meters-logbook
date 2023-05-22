@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
-import { QUERY_WORKOUTS } from "../utils/queries";
+import { QUERY_WORKOUTS, QUERY_ME_BASIC } from "../utils/queries";
+import Auth from "../utils/auth";
 import WorkoutList from "../components/WorkoutList";
-// import Auth from '../utils/auth';
 
 function Home() {
   // useQuery hook makes query request
@@ -10,14 +10,31 @@ function Home() {
   // const defined by optional chaining
   const workouts = data?.workouts || [];
 
+  // conditional rendering
+  const loggedIn = Auth.loggedIn();
+
+  // destructured data object is the useQuery hook's response
+  const { data: userData } = useQuery(QUERY_ME_BASIC);
+
   return (
-    <section>
-      {loading ? (
-        <div>loading...</div>
-      ) : (
-        <WorkoutList workouts={workouts} title="total workouts" />
-      )}
-    </section>
+    <>
+      {" "}
+      {loggedIn && userData ? (
+        <section>
+          <p>coach: something</p>
+          <p>username: {userData.me.username}</p>
+          <p>email: {userData.me.email}</p>
+          <p>workouts: {userData.me.workouts.length}</p>
+        </section>
+      ) : null}
+      <section className={`${loggedIn && "logged-in"}`}>
+        {loading ? (
+          <article>loading...</article>
+        ) : (
+          <WorkoutList workouts={workouts} title="total workouts" />
+        )}
+      </section>
+    </>
   );
 }
 

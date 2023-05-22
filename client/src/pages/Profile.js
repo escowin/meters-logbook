@@ -1,16 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import WorkoutList from "../components/WorkoutList";
 
 function Profile() {
   const { username: userParam } = useParams();
+
   //   adds variables to a `useQuery` hook to run queries with arguments
-  const { loading, data } = useQuery(QUERY_USER, {
+  // if there's a URL bar value in userParam, use query user. no value uses query me
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
 
-  const user = data?.user || {};
+  // handles each type of the above response
+  const user = data?.me || data?.user || {};
 
   if (loading) {
     return <section>Loading...</section>;

@@ -6,7 +6,7 @@ function Header() {
   const navLinks = [
     {
       name: "home",
-      path: "home",
+      path: "",
     },
     {
       name: "me",
