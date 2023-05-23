@@ -1,5 +1,3 @@
-// import { Link } from "react-router-dom";
-
 import "../assets/styles/footer.css";
 
 function Footer(date) {
