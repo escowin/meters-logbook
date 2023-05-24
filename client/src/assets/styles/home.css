@@ -1,0 +1,24 @@
+.logged-in {
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+    "a c"
+    "b c";
+    overflow-y: hidden;
+}
+
+.user-section {
+    grid-area: a;
+}
+
+.form-section {
+    grid-area: b;
+}
+
+.workouts-section {
+    grid-area: c;
+    overflow-y: scroll;
+    height: 100%;
+}

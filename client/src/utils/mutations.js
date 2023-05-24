@@ -25,16 +25,16 @@ export const ADD_USER = gql`
 `;
 
 // to-do | write into corresponding server-side schemas
-// export const ADD_CREWMATE = gql`
-//   mutation addCrewmate($id: ID!) {
-//     addCrewmate(crewmateId: $id) {
-//       _id
-//       username
-//       crew
-//       crewmate {
-//         _id
-//         username
-//       }
-//     }
-//   }
-// `;
+export const ADD_CREWMATE = gql`
+  mutation addCrewmate($id: ID!) {
+    addCrewmate(crewmateId: $id) {
+      _id
+      username
+      crew
+      crewmate {
+        _id
+        username
+      }
+    }
+  }
+`;

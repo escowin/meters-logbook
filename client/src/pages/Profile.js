@@ -1,10 +1,14 @@
 import { Navigate, useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import { ADD_CREWMATE } from "../utils/mutations";
 import Auth from "../utils/auth";
 import WorkoutList from "../components/WorkoutList";
+import ActivityForm from "../components/ActivityForm";
 
+// query/mutation note: re-request data from server not needed. apollo client aches query results, updates cache with every mutation
 function Profile() {
+  const [addCrewmate] = useMutation(ADD_CREWMATE);
   const { username: userParam } = useParams();
 
   // adds variables to a `useQuery` hook to run queries with arguments
@@ -30,13 +34,30 @@ function Profile() {
     return <section>Loading...</section>;
   }
 
+  const handleClick = async (e) => {
+    try {
+      await addCrewmate({
+        variables: { id: user._id },
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <>
-      <section>
+      <section className="user-section">
         <h2>{userParam ? `${user.username}'s` : "your"} profile</h2>
         <p>{user.email}</p>
+        {/* renders only in `/profile/:username` */}
+        {userParam && <button onClick={handleClick}>add crewmate</button>}
       </section>
-      <section>
+      {!userParam && (
+        <section className="form-section">
+          <ActivityForm/>
+        </section>
+      )}
+      <section className="workouts-section">
         <WorkoutList
           workouts={user.workouts}
           title={`${user.username}'s workouts:`}

@@ -24,7 +24,7 @@
   font-family: 'Quicksand', sans-serif;
   font-variant: small-caps;
   color: var(--light-text);
-  background: linear-gradient(var(--bg-overlay), transparent), fixed url('./assets/images/background.jpg');
+  background: linear-gradient(var(--bg-overlay), transparent), fixed url('../images/background.jpg');
   background-size: cover;
   background-position: center;
   letter-spacing: .125rem;
