@@ -4,7 +4,7 @@ import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { ADD_CREWMATE } from "../utils/mutations";
 import Auth from "../utils/auth";
 import WorkoutList from "../components/WorkoutList";
-import ActivityForm from "../components/ActivityForm";
+import WorkoutForm from "../components/WorkoutForm";
 
 // query/mutation note: re-request data from server not needed. apollo client aches query results, updates cache with every mutation
 function Profile() {
@@ -54,7 +54,7 @@ function Profile() {
       </section>
       {!userParam && (
         <section className="form-section">
-          <ActivityForm/>
+          <WorkoutForm/>
         </section>
       )}
       <section className="workouts-section">

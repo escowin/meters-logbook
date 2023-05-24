@@ -1,4 +1,7 @@
-function ActivityForm() {
+import { useMutation } from "@apollo/client";
+import { ADD_WORKOUT } from "../utils/mutations";
+
+function WorkoutForm() {
   return (
     <form>
       <h2>Add activity</h2>
@@ -8,9 +11,11 @@ function ActivityForm() {
       <input type="date" id="date"></input>
       <label htmlFor="meters">meters</label>
       <input type="number" id="meters"></input>
+      <label htmlFor="notes">notes</label>
+      <input type="text" id="notes"></input>
       <button type="submit">add</button>
     </form>
   );
 }
 
-export default ActivityForm;
+export default WorkoutForm;

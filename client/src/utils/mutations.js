@@ -38,3 +38,28 @@ export const ADD_CREWMATE = gql`
     }
   }
 `;
+
+export const ADD_WORKOUT = gql`
+  mutation addWorkout(
+    $activity: String!
+    $meters: Int!
+    $adjustedMeters: Int!
+    $date: String!
+    $notes: String!
+  ) {
+    addWorkout(
+      activity: $activity
+      meters: $meters
+      adjustedMeters: $adjustedMeters
+      date: $date
+      notes: $notes
+    ) {
+      _id
+      activity
+      meters
+      adjustedMeters
+      date
+      notes
+    }
+  }
+`;

@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_WORKOUTS, QUERY_ME_BASIC } from "../utils/queries";
 import Auth from "../utils/auth";
 import WorkoutList from "../components/WorkoutList";
-import ActivityForm from "../components/ActivityForm";
+import WorkoutForm from "../components/WorkoutForm";
 import "../assets/styles/home.css"
 
 function Home() {
@@ -31,7 +31,7 @@ function Home() {
       ) : null}
       {loggedIn && (
         <section className="form-section">
-          <ActivityForm />
+          <WorkoutForm />
         </section>
       )}
       <section className="workouts-section">
