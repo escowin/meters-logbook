@@ -17,6 +17,25 @@
   /* outline: 1px dotted blue; */
 }
 
+::-webkit-scrollbar {
+  background-color: var(--dark-overlay);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: .5rem;
+  transition: 1s;
+}
+
+::-webkit-scrollbar-track {
+  margin: .25rem;
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background-color: var(--red);
+  box-shadow: 0 0 1rem var(--red);
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -49,9 +68,30 @@ section {
   border-radius: .25rem;
 }
 
+.user-section {
+  gap: .5rem;
+}
 h2 {
   border-bottom: 2px solid var(--bg-overlay);
 }
+
+/* buttons */
+button {
+  border-radius: .25rem;
+  border: none;
+  padding: .125rem;
+  transition: 1s;
+  background-color: var(--blue);
+  margin-top: .5rem;
+  font-size: 1.25rem;
+}
+
+button:active,
+button:hover {
+  background-color: var(--red);
+  outline: 1px solid var(--dark-overlay);
+}
+
 /* typography */
 ol,
 ul {
@@ -74,4 +114,9 @@ a,
   .display-lg {
     display: block;
   }
+
+  main {
+    gap: .75rem 1rem;
+  }
+
 }

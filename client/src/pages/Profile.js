@@ -47,20 +47,35 @@ function Profile() {
   return (
     <>
       <section className="user-section">
-        <h2>{userParam ? `${user.username}'s` : "your"} profile</h2>
-        <p>{user.email}</p>
-        {/* renders only in `/profile/:username` */}
-        {userParam && <button onClick={handleClick}>add crewmate</button>}
+        <h2>{userParam ? `${user.username}` : "me"}</h2>
+        <p>workouts : {user.workouts.length}</p>
+        {/* renders only in `/profile` */}
+        {!userParam && (
+          <>
+            <p>coach : something</p>
+            <h3>meters</h3>
+            <p>week :</p>
+            <p>month :</p>
+            <p>total :</p>
+          </>
+        )}
       </section>
+      {/* renders only in `/profile/:username` */}
+      {userParam && Auth.loggedIn (
+        <section>
+          <button onClick={handleClick}>add crewmate</button>
+        </section>
+      )}
       {!userParam && (
         <section className="form-section">
-          <WorkoutForm/>
+          <WorkoutForm />
         </section>
       )}
       <section className="workouts-section">
         <WorkoutList
           workouts={user.workouts}
-          title={`${user.username}'s workouts:`}
+          // title={`${user.username}'s workouts:`}
+          title={userParam ? `${user.username} workouts` : "my workouts"}
         />
       </section>
     </>

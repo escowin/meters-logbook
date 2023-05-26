@@ -23,7 +23,6 @@ form input {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid var(--light-text);
-
   padding: .5rem;
   font-variant: normal;
   color: var(--light-text);
@@ -36,18 +35,8 @@ form input:focus {
   outline: none;
 }
 
-form button {
-  border-radius: .25rem;
-  border: none;
-  padding: .125rem;
-  transition: 1s;
-  background-color: var(--blue);
-  margin-top: .5rem;
-  font-size: 1.25rem;
-}
-
-button:active,
-button:hover {
-  background-color: var(--red);
-  outline: 1px solid var(--dark-overlay);
+@media screen and (min-width: 1024px) {
+  form input {
+    margin: 0 0 1rem 1rem;
+  }
 }

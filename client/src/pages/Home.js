@@ -23,9 +23,8 @@ function Home() {
       {" "}
       {loggedIn && userData ? (
         <section className="user-section">
-          <p>coach: something</p>
-          <p>username: {userData.me.username}</p>
-          <p>email: {userData.me.email}</p>
+          <h2>Home view</h2>
+          <p>Welcome, {userData.me.username}</p>
           <p>workouts: {userData.me.workouts.length}</p>
         </section>
       ) : null}
@@ -38,7 +37,7 @@ function Home() {
         {loading ? (
           <article>loading...</article>
         ) : (
-          <WorkoutList workouts={workouts} title="total workouts" />
+          <WorkoutList workouts={workouts} title="all users workouts" />
         )}
       </section>
     </>
