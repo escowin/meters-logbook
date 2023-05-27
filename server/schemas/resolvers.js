@@ -81,6 +81,9 @@ const resolvers = {
       }
       throw new AuthenticationError("you ned to be logged in");
     },
+
+    // update User mutation
+    // updateUser: async (parent, args, context) = {},
   },
 };
 

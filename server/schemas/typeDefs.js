@@ -1,5 +1,5 @@
 const { gql } = require("apollo-server-express"); // imports gql tagged template function
-// future mutations | add an athlete ()
+// future mutations | add an athlete (), updateUser
 // future  user property | type: String, 'coach', 'athelete', 'launch', 'coxsain'
 // coaches will query all associated atheletes, atheletes can query me
 const typeDefs = gql`
