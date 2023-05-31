@@ -82,18 +82,19 @@ function WorkoutForm() {
       <label htmlFor="notes">
         notes
         <span
-          className={`${characterCount === 80 || error ? "text-error" : ""}`}
+          className={`char ${characterCount === 50 || error ? "max" : "min"}`}
         >
-          {characterCount}/80
+          {characterCount}/50
           {error && <span>error</span>}
         </span>
       </label>
-      <input
+      <textarea
         type="text"
         id="notes"
         value={notes}
         onChange={handleChange}
-      ></input>
+        maxLength={50}
+      ></textarea>
 
       <button type="submit">add</button>
     </form>

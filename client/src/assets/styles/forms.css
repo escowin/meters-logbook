@@ -19,7 +19,7 @@ form label {
   margin: 0 0 0 .5rem;
 }
 
-form input {
+form input, form textarea {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid var(--light-text);
@@ -28,11 +28,29 @@ form input {
   color: var(--light-text);
   margin: 0 0 1.75rem 1rem;
   transition: 1s;
+  resize: none;
+}
+
+form textarea {
+  height: 4rem;
+}
+
+form textarea:focus {
+  outline: none;
 }
 
 form input:focus {
   background-color: transparent;
-  outline: none;
+}
+
+.char {
+  font-size: .55rem;
+  padding-left: .5rem;
+  transition: color 1s;
+}
+
+.max {
+  color: red;
 }
 
 @media screen and (min-width: 1024px) {
