@@ -3,7 +3,7 @@ import { QUERY_WORKOUTS, QUERY_ME_BASIC } from "../utils/queries";
 import Auth from "../utils/auth";
 import WorkoutList from "../components/WorkoutList";
 import WorkoutForm from "../components/WorkoutForm";
-import "../assets/styles/home.css"
+import "../assets/styles/home.css";
 
 function Home() {
   // useQuery hook makes query request
