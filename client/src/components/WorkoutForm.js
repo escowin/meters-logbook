@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-
 import { useMutation } from "@apollo/client";
 import { ADD_WORKOUT } from "../utils/mutations";
 
-function WorkoutForm() {
-  const [notes, setNotes] = useState("");
+const WorkoutForm = () => {
   const [activity, setActivity] = useState("");
   const [date, setDate] = useState("");
   const [meters, setMeters] = useState("");
+  const [notes, setNotes] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
 
   // addWorkout runs the mutation
@@ -15,7 +14,7 @@ function WorkoutForm() {
 
   // update state based on form input changes
   const handleChange = (event) => {
-    if (event.target.value.length <= 80) {
+    if (event.target.value.length <= 50) {
       if (event.target.id === "activity") {
         setActivity(event.target.value);
       } else if (event.target.id === "date") {
@@ -29,38 +28,32 @@ function WorkoutForm() {
     }
   };
 
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    
     let adjustedMeters;
-    switch(activity) {
+    switch (activity) {
       case "paddleboarding":
-        adjustedMeters = meters * 3;
+        adjustedMeters = parseInt(meters) * 3;
         break;
       default:
-        adjustedMeters = meters;
+        adjustedMeters = parseInt(meters);
         break;
     }
-
-    const formObj = {
-      activity,
-      date,
-      meters,
-      adjustedMeters,
-      notes,
-    };
-    console.log(formObj);
 
     try {
       // adds workout through the function
       await addWorkout({
-        variables: { ...formObj },
+        variables: { activity, date, meters: parseInt(meters), adjustedMeters, notes },
       });
 
-      //   // clears form values
-      //   setText("");
-      //   setCharacterCount(0);
+      // clears form values
+      setActivity("");
+      setDate("");
+      setMeters("");
+      setNotes("");
+      setCharacterCount(0);
     } catch (err) {
       console.error(err);
     }
@@ -71,13 +64,23 @@ function WorkoutForm() {
       <h2>Add workout</h2>
 
       <label htmlFor="activity">activity</label>
-      <input type="text" id="activity" value={activity} onChange={handleChange}></input>
+      <input
+        type="text"
+        id="activity"
+        value={activity}
+        onChange={handleChange}
+      ></input>
 
       <label htmlFor="date">date</label>
       <input type="date" id="date" value={date} onChange={handleChange}></input>
 
       <label htmlFor="meters">meters</label>
-      <input type="number" id="meters" value={meters} onChange={handleChange}></input>
+      <input
+        type="number"
+        id="meters"
+        value={meters}
+        onChange={handleChange}
+      ></input>
 
       <label htmlFor="notes">
         notes
