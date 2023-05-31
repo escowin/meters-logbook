@@ -31,10 +31,6 @@ form input, form textarea {
   resize: none;
 }
 
-form textarea {
-  height: 4rem;
-}
-
 form textarea:focus {
   outline: none;
 }

@@ -20,7 +20,7 @@
 .workouts-section {
     grid-area: c;
     overflow-y: scroll;
-    height: 100%;
+    height: 90vh;
 }
 
 @media screen and (min-width: 1024px) {

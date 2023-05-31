@@ -34,6 +34,7 @@ export const ADD_WORKOUT = gql`
       adjustedMeters
       createdAt
       notes
+      username
     }
   }
 `;
