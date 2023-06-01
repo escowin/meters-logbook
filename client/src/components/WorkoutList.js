@@ -10,14 +10,20 @@ function WorkoutList({ workouts, title }) {
   }
 
   return (
+    // logged in users see more details from the workouts query
     <>
       <h2>{title}</h2>
       {workouts &&
         workouts.map((workout) => (
           <article key={workout._id}>
             <Link to={`/workout/${workout._id}`}>{workout.activity}</Link>
-            <p>{workout.meters}</p>
             <p>{workout.date}</p>
+            <p>
+              {workout.meters}m{" "}
+              {loggedIn && workout.meters !== workout.adjustedMeters ? (
+                <span className="adjustedMeters">({workout.adjustedMeters}m)</span>
+              ) : null}
+            </p>
             {loggedIn ? (
               <>
                 <p>{workout.notes}</p>
