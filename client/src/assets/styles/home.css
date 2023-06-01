@@ -1,12 +1,6 @@
 .logged-in {
-    display: grid;
-    align-items: flex-start;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-    grid-template-areas: 
-    "a c"
-    "b c";
-    overflow-y: hidden;
+    overflow-y: scroll;
+    gap: 1rem;
 }
 
 .user-section {
@@ -19,11 +13,22 @@
 
 .workouts-section {
     grid-area: c;
-    overflow-y: scroll;
     height: 90vh;
+    width: 100%;
 }
 
 @media screen and (min-width: 1024px) {
+    .logged-in {
+        display: grid;
+        align-items: flex-start;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+        "a c"
+        "b c";
+        overflow-y: hidden;
+    }
+
     .logged-in {
         grid-template-rows: auto min-content;
     }

@@ -13,28 +13,38 @@ function WorkoutList({ workouts, title }) {
     // logged in users see more details from the workouts query
     <>
       <h2>{title}</h2>
-      {workouts &&
-        workouts.map((workout) => (
-          <article key={workout._id}>
-            <Link to={`/workout/${workout._id}`}>{workout.activity}</Link>
-            <p>{workout.date}</p>
-            <p>
-              {workout.meters}m{" "}
-              {loggedIn && workout.meters !== workout.adjustedMeters ? (
-                <span className="adjustedMeters">({workout.adjustedMeters}m)</span>
+      <ul className="workouts">
+        {workouts &&
+          workouts.map((workout) => (
+            // <li key={workout._id} className="workout">
+            <li
+              key={workout._id}
+              className={`workout ${loggedIn ? "workout-max" : "workout-min"}`}
+            >
+              <Link to={`/workout/${workout._id}`} className="activity">
+                <h3>{workout.activity}</h3>
+              </Link>
+              <p>{workout.date}</p>
+              <p className="meters">
+                {workout.meters}m
+                {loggedIn && workout.meters !== workout.adjustedMeters ? (
+                  <span className="adjustedMeters">
+                    ({workout.adjustedMeters}m)
+                  </span>
+                ) : null}
+              </p>
+              {loggedIn ? (
+                <>
+                  <p>{workout.notes}</p>
+                  <Link to={`/profile/$workout.username}`}>
+                    {workout.username}
+                  </Link>
+                </>
               ) : null}
-            </p>
-            {loggedIn ? (
-              <>
-                <p>{workout.notes}</p>
-                <Link to={`/profile/$workout.username}`}>
-                  {workout.username}
-                </Link>
-              </>
-            ) : null}
-            {""}
-          </article>
-        ))}
+              {""}
+            </li>
+          ))}
+      </ul>
     </>
   );
 }

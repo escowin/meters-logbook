@@ -55,8 +55,7 @@ main {
   flex-grow: 1;
   align-items: center;
   padding: .5rem;
-  gap: 2rem;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 section {
