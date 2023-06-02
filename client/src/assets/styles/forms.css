@@ -50,7 +50,13 @@ form input:focus {
   color: red;
 }
 
+@media screen and (min-width: 768px) {
+  .login-form, .signup-form {
+    gap: .25rem;
+  }
+}
 @media screen and (min-width: 1024px) {
+
   form input {
     margin: 0 0 1rem 1rem;
   }

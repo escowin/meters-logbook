@@ -114,6 +114,21 @@ a,
   display: none;
 }
 
+input:focus {
+  outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    font-size: 125%;
+  }
+
+  .main-min {
+    height: 100%;
+  }
+}
+
+
 @media screen and (min-width: 1024px) {
   .display-lg {
     display: block;
@@ -122,5 +137,6 @@ a,
   main {
     gap: .75rem 1rem;
   }
+
 
 }

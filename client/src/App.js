@@ -45,7 +45,6 @@ const client = new ApolloClient({
 
 function App() {
   const date = new Date().getFullYear();
-  // consider | streamline Route return by mapping an array
 
   const loggedIn = Auth.loggedIn();
 
@@ -54,7 +53,7 @@ function App() {
       {/* components for client-side routing */}
       <Router>
         <Header />
-        <main className={`${loggedIn && "logged-in"}`}>
+        <main className={`${loggedIn ? "logged-in" : "main-min"}`}>
           <Routes>
             {/* uses url parameters in React Router for dynamic page content */}
             <Route path="/" element={<Home />} />

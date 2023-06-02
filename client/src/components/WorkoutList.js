@@ -22,7 +22,6 @@ function WorkoutList({ workouts, title }) {
       <ul className="workouts">
         {workouts &&
           workouts.map((workout) => (
-            // <li key={workout._id} className="workout">
             <li
               key={workout._id}
               className={`workout ${loggedIn ? "workout-max" : "workout-min"}`}
