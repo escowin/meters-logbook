@@ -13,6 +13,12 @@ function WorkoutList({ workouts, title }) {
     // logged in users see more details from the workouts query
     <>
       <h2>{title}</h2>
+      <ul className="workout-legend">
+        <li>activity</li>
+        <li>date</li>
+        <li>meters</li>
+      </ul>
+
       <ul className="workouts">
         {workouts &&
           workouts.map((workout) => (

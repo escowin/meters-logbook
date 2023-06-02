@@ -19,6 +19,7 @@
 
 ::-webkit-scrollbar {
   background-color: var(--dark-overlay);
+  width: .5rem;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -32,7 +33,7 @@
 }
 
 :hover::-webkit-scrollbar-thumb {
-  background-color: var(--red);
+  background-color: var(--white);
   box-shadow: 0 0 1rem var(--red);
 }
 
@@ -70,8 +71,12 @@ section {
 .user-section {
   gap: .5rem;
 }
+
+
 h2 {
-  border-bottom: 2px solid var(--bg-overlay);
+  border-top: 1px solid var(--light-text);
+  border-left: 1px solid var(--light-text);
+  padding: .25rem 2rem .25rem .5rem;
 }
 
 /* buttons */

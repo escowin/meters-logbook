@@ -1,3 +1,7 @@
+* {
+    /* outline: 1px dotted gray; */
+}
+
 .workouts {
     display: flex;
     flex-direction: column;
@@ -7,14 +11,22 @@
     padding: 0 .5rem;
 }
 
+.workout-legend {
+    display: grid;
+    padding: 0 .5rem;
+    grid-template-columns: 40vw 1fr auto;
+    gap: .5rem;
+}
+
 .workout {
     display: grid;
     gap: .5rem;
     width: 100%;
+    align-items: baseline;
 }
 
 .workout-min {
-    grid-template-columns: 40vw auto 1fr;
+    grid-template-columns: 40vw 1fr auto;
 }
 
 .workout p {

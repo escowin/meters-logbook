@@ -27,7 +27,7 @@ form input, form textarea {
   padding: .5rem;
   font-variant: normal;
   color: var(--light-text);
-  margin: 0 0 1.75rem 1rem;
+  margin: 0 1rem 1.75rem 1rem;
   transition: 1s;
   resize: none;
 }
