@@ -30,11 +30,12 @@ function Workout() {
         ) : null}
         <p>Date</p> <p>{workout.date}</p>
         <p>Meters</p> <p>{workout.meters}m</p>
+        <p>Adjusted</p>
         {workout.meters !== workout.adjustedMeters ? (
-          <>
-            <p>Adjusted</p> <p>{workout.adjustedMeters}m</p>
-          </>
-        ) : null}
+          <p>{workout.adjustedMeters}m</p>
+        ) : (
+          <p>-</p>
+        )}
       </article>
       <article>
         <h3>Notes</h3>
