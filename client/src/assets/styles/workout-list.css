@@ -33,6 +33,21 @@
     text-align: end;
 }
 
+.workout-details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .25rem 1rem;
+    align-items: baseline;
+}
+
+.workout-details h3 {
+    grid-column: span 2;
+}
+
+.workout article * {
+    padding: 0 0 0 .75rem;
+}
+
 @media screen and (min-width: 768px) {
 
     .workout-min,

@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_WORKOUT } from "../utils/queries";
+import Auth from "../utils/auth";
 import "../assets/styles/workout-list.css";
 
 function Workout() {
+  const loggedIn = Auth.loggedIn();
   const { id: workoutId } = useParams();
 
   const { loading, data } = useQuery(QUERY_WORKOUT, {
@@ -18,17 +20,26 @@ function Workout() {
 
   return (
     <section className="workout">
-      <h2>
-        {workout.date} : {workout.activity}
-      </h2>
-      <p>User</p>
-      <p>{workout.username}</p>
-      <p>Meters</p>
-      <p>{workout.meters}m</p>
-      <p>adjusted</p>
-      <p>{workout.adjustedMeters}m</p>
-      <p>Notes</p>
-      <p>{workout.notes}</p>
+      <h2>{workout.activity} </h2>
+      <article className="workout-details">
+        <h3>Activity details</h3>
+        {loggedIn ? (
+          <>
+            <p>User</p> <p>{workout.username}</p>
+          </>
+        ) : null}
+        <p>Date</p> <p>{workout.date}</p>
+        <p>Meters</p> <p>{workout.meters}m</p>
+        {workout.meters !== workout.adjustedMeters ? (
+          <>
+            <p>Adjusted</p> <p>{workout.adjustedMeters}m</p>
+          </>
+        ) : null}
+      </article>
+      <article>
+        <h3>Notes</h3>
+        <p>{workout.notes}</p>
+      </article>
     </section>
   );
 }
