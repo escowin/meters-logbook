@@ -1,6 +1,10 @@
 .logged-in {
-    overflow-y: scroll;
-    gap: 1rem;
+    /* overflow-y: scroll; */
+    gap: .75rem;
+}
+
+.logged-in section {
+    width: 100%;
 }
 
 .user-section {

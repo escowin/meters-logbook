@@ -10,6 +10,8 @@ const WorkoutForm = () => {
   const [notes, setNotes] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
 
+  const activities = ["row", "erg", "kayak", "paddleboard", "cycle", "jog"];
+
   // addWorkout runs the mutation
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT, {
     update(cache, { data: { addWorkout } }) {
@@ -91,20 +93,35 @@ const WorkoutForm = () => {
       <h2>Add workout</h2>
 
       <label htmlFor="activity">activity</label>
-      <input
+
+      <select
         type="text"
         id="activity"
+        className="input"
         value={activity}
         onChange={handleChange}
-      ></input>
+      >
+        {activities.map((activity, i) => (
+          <option key={i} value={activity}>
+            {activity}
+          </option>
+        ))}
+      </select>
 
       <label htmlFor="date">date</label>
-      <input type="date" id="date" value={date} onChange={handleChange}></input>
+      <input
+        type="date"
+        id="date"
+        className="input"
+        value={date}
+        onChange={handleChange}
+      ></input>
 
       <label htmlFor="meters">meters</label>
       <input
         type="number"
         id="meters"
+        className="input"
         value={meters}
         onChange={handleChange}
       ></input>
@@ -121,6 +138,7 @@ const WorkoutForm = () => {
       <textarea
         type="text"
         id="notes"
+        className="input"
         value={notes}
         onChange={handleChange}
         maxLength={50}

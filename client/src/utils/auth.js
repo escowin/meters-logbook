@@ -19,11 +19,9 @@ class AuthService {
   isTokenExpired(token) {
     try {
       const decoded = decode(token);
-      if (decode.exp < Date.now() / 1000) {
+      if (decoded.exp < Date.now() / 1000) {
         return true;
-      } else {
-        return false;
-      }
+      } else return false;
     } catch (err) {
       return false;
     }
@@ -45,10 +43,11 @@ class AuthService {
   // clears token jwt localStorage and forces logout w/ reload
   logout() {
     // clears user jwt and profile data from localStorage
-    localStorage.removeItem("id_token");
+    localStorage.removeItem('id_token');
     // reloads page and resets the application's state
-    window.location.assign("/");
+    window.location.assign('/');
   }
 }
 
-export default new AuthService();
+const authService = new AuthService();
+export default authService;
