@@ -89,60 +89,65 @@ const WorkoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit} className="workout-form">
       <h2>Add workout</h2>
-
-      <label htmlFor="activity">activity</label>
-
-      <select
-        type="text"
-        id="activity"
-        className="input"
-        value={activity}
-        onChange={handleChange}
-      >
-        {activities.map((activity, i) => (
-          <option key={i} value={activity}>
-            {activity}
-          </option>
-        ))}
-      </select>
-
-      <label htmlFor="date">date</label>
-      <input
-        type="date"
-        id="date"
-        className="input"
-        value={date}
-        onChange={handleChange}
-      ></input>
-
-      <label htmlFor="meters">meters</label>
-      <input
-        type="number"
-        id="meters"
-        className="input"
-        value={meters}
-        onChange={handleChange}
-      ></input>
-
-      <label htmlFor="notes">
-        notes
-        <span
-          className={`char ${characterCount === 50 || error ? "max" : "min"}`}
+      <article>
+        <label htmlFor="activity">activity</label>
+        <select
+          type="text"
+          id="activity"
+          className="input"
+          value={activity}
+          onChange={handleChange}
         >
-          {characterCount}/50
-          {error && <span>error</span>}
-        </span>
-      </label>
-      <textarea
-        type="text"
-        id="notes"
-        className="input"
-        value={notes}
-        onChange={handleChange}
-        maxLength={50}
-      ></textarea>
+          {activities.map((activity, i) => (
+            <option key={i} value={activity}>
+              {activity}
+            </option>
+          ))}
+        </select>
+      </article>
+
+      <article>
+        <label htmlFor="date">date</label>
+        <input
+          type="date"
+          id="date"
+          className="input"
+          value={date}
+          onChange={handleChange}
+        ></input>
+      </article>
+      <article>
+        <label htmlFor="meters">meters</label>
+        <input
+          type="number"
+          id="meters"
+          className="input"
+          value={meters}
+          onChange={handleChange}
+        ></input>
+      </article>
+
+      <article className="notes-wrapper">
+        <label htmlFor="notes">
+          notes
+          <span
+            className={`char ${characterCount === 50 || error ? "max" : "min"}`}
+          >
+            {characterCount}/50
+            {error && <span>error</span>}
+          </span>
+        </label>
+        <textarea
+          type="text"
+          id="notes"
+          className="input"
+          value={notes}
+          onChange={handleChange}
+          maxLength={50}
+        ></textarea>
+      </article>
 
       <button type="submit">add</button>
     </form>

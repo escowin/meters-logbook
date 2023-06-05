@@ -54,6 +54,21 @@ form textarea:focus {
   .login-form, .signup-form {
     gap: .25rem;
   }
+
+  .workout-form {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: .5rem;
+  }
+
+  .workout-form h2, .workout-form button, .notes-wrapper  {
+    grid-column: span 3;
+  }
+
+  .workout-form article {
+    display: flex;
+    flex-direction: column;
+  }
 }
 @media screen and (min-width: 1024px) {
 

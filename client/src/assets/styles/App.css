@@ -126,17 +126,35 @@ input:focus {
   .main-min {
     height: 100%;
   }
+
+  .logged-in {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(1fr);
+    grid-template-areas: 
+    "a b"
+    "c c";
+    overflow-x: hidden;
+  }
+
+  .logged-in section {
+    height: 100%;
+  }
+
+  .workouts {
+    height: 100%;
+  }
 }
 
 
 @media screen and (min-width: 1024px) {
-  .display-lg {
+  /* .display-lg {
     display: block;
   }
 
   main {
     gap: .75rem 1rem;
-  }
+  } */
 
 
 }
