@@ -38,16 +38,20 @@ const workoutSchema = new Schema(
   }
 );
 
-workoutSchema.virtual("adjusted").get(function() {
-    switch (this.activity) {
-      case "paddleboarding":
-        adjustedMeters = parseInt(meters) * 3;
-        break;
-      default:
-        adjustedMeters = parseInt(meters);
-        break;
-    }
-})
+workoutSchema.virtual("adjusted").get(function () {
+  switch (this.activity) {
+    case "paddleboarding":
+    case "swimming":
+      result = parseInt(this.meters) * 3;
+      break;
+    case "biking":
+      result = parseInt(this.meters) * 4;
+      break;
+    default:
+      result = parseInt(this.meters);
+      break;
+  }
+});
 const Workout = model("Workout", workoutSchema);
 
 module.exports = Workout;
