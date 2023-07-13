@@ -13,12 +13,12 @@ const workoutSchema = new Schema(
       minlength: 1,
       maxlength: 99999,
     },
-    adjustedMeters: {
-      type: Number,
-      required: true,
-      minlength: 1,
-      maxlength: 99999999,
-    },
+    // adjustedMeters: {
+    //   type: Number,
+    //   required: true,
+    //   minlength: 1,
+    //   maxlength: 99999999,
+    // },
     username: {
       type: String,
       required: true,
@@ -44,6 +44,12 @@ const workoutSchema = new Schema(
   }
 );
 
+workoutSchema.virtual("adjusted").get(function() {
+  if (this.activity === "paddleboarding") {
+    return this.meters * 2
+  }
+  return this.meters
+})
 const Workout = model("Workout", workoutSchema);
 
 module.exports = Workout;

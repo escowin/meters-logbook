@@ -19,6 +19,7 @@ const typeDefs = gql`
     date: String
     notes: String
     createdAt: String
+    adjusted: Int
   }
 
   type Query {
