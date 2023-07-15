@@ -18,26 +18,25 @@ function Home() {
   // destructured data object is the useQuery hook's response
   const { data: userData } = useQuery(QUERY_ME_BASIC);
 
-  console.log(userData)
+  // console.log(userData);
 
   return (
     <>
       {" "}
       {loggedIn && userData ? (
-        <section className="user-section">
-          <h2>Home view</h2>
-          <p>Welcome, {userData.me.username}</p>
-          <p>workouts: {userData.me.workouts.length}</p>
-          <p>total: {userData.me.totalMeters}m</p>
-          <p>daily: {userData.me.totalMeters}m</p>
-
-        </section>
+        <>
+          <section className="user-section">
+            <h2>{userData.me.username} stats</h2>
+            <p>total: {userData.me.totalMeters}m</p>
+            <p>monthly: {userData.me.monthlyMeters}m</p>
+            <p>weekly: {userData.me.weeklyMeters}m</p>
+            <p>daily: {userData.me.dailyMeters}m</p>
+          </section>
+          <section className="form-section">
+            <WorkoutForm />
+          </section>
+        </>
       ) : null}
-      {loggedIn && (
-        <section className="form-section">
-          <WorkoutForm />
-        </section>
-      )}
       <section className="workouts-section">
         {loading ? (
           <article>loading...</article>

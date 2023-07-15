@@ -17,23 +17,23 @@
 
 .workouts-section {
     grid-area: c;
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
 }
 
 @media screen and (min-width: 1024px) {
-    .logged-in {
+    /* .logged-in {
         display: grid;
         align-items: flex-start;
         grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto;
+        grid-template-rows: 40vh auto;
         grid-template-areas: 
         "a c"
         "b c";
         overflow-y: hidden;
     }
 
-    .logged-in {
-        grid-template-rows: auto min-content;
-    }
+    .logged-in section {
+        height: auto;
+    } */
 }
