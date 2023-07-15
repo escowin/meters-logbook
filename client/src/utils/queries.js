@@ -26,6 +26,8 @@ export const QUERY_ME_BASIC = gql`
       username
       email
       totalMeters
+      monthlyMeters
+      weeklyMeters
       dailyMeters
       workouts {
         _id

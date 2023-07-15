@@ -8,6 +8,8 @@ const typeDefs = gql`
     username: String
     email: String
     totalMeters: Int
+    monthlyMeters: Int
+    weeklyMeters: Int
     dailyMeters: Int
     workouts: [Workout]
   }

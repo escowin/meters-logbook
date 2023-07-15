@@ -29,6 +29,8 @@ function Home() {
           <p>Welcome, {userData.me.username}</p>
           <p>workouts: {userData.me.workouts.length}</p>
           <p>total: {userData.me.totalMeters}m</p>
+          <p>daily: {userData.me.totalMeters}m</p>
+
         </section>
       ) : null}
       {loggedIn && (
