@@ -32,9 +32,9 @@ function WorkoutList({ workouts, title }) {
               <p>{workout.date}</p>
               <p className="meters">
                 {workout.meters}m
-                {loggedIn && workout.meters !== workout.adjustedMeters ? (
+                {loggedIn && workout.meters !== workout.adjusted ? (
                   <span className="adjustedMeters">
-                    ({workout.adjustedMeters}m)
+                    ({workout.adjusted}m)
                   </span>
                 ) : null}
               </p>

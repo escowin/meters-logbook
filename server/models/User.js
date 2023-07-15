@@ -26,12 +26,6 @@ const userSchema = new Schema(
         ref: "Workout",
       },
     ],
-    // possible property
-    // type: {
-    //   type: String,
-    //   required: false,
-    //   trim: true,
-    // },
   },
   {
     toJSON: {
@@ -39,6 +33,23 @@ const userSchema = new Schema(
     },
   }
 );
+
+userSchema.virtual("totalMeters").get(function () {
+  let total = 0;
+  this.workouts.forEach((workout) => (total += workout.meters));
+  return total;
+});
+
+userSchema.virtual("dailyMeters").get(function () {
+  const today = new Date().toISOString().slice(0, 10);
+  let total = 0;
+  this.workouts.forEach((workout) => {
+    if (workout.date === today) {
+      total += workout.meters;
+    }
+  });
+  return total;
+});
 
 // middleware | presaves to create password
 userSchema.pre("save", async function (next) {

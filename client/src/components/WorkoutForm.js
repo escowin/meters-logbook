@@ -55,16 +55,6 @@ const WorkoutForm = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    let adjustedMeters;
-    switch (activity) {
-      case "paddleboarding":
-        adjustedMeters = parseInt(meters) * 3;
-        break;
-      default:
-        adjustedMeters = parseInt(meters);
-        break;
-    }
-
     try {
       // adds workout through the function
       await addWorkout({
@@ -72,7 +62,6 @@ const WorkoutForm = () => {
           activity,
           date,
           meters: parseInt(meters),
-          adjustedMeters,
           notes,
         },
       });

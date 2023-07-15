@@ -7,6 +7,8 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
+    totalMeters: Int
+    dailyMeters: Int
     workouts: [Workout]
   }
 

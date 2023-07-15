@@ -31,8 +31,8 @@ function Workout() {
         <p>Date</p> <p>{workout.date}</p>
         <p>Meters</p> <p>{workout.meters}m</p>
         <p>Adjusted</p>
-        {workout.meters !== workout.adjustedMeters ? (
-          <p>{workout.adjustedMeters}m</p>
+        {workout.meters !== workout.adjusted ? (
+          <p>{workout.adjusted}m</p>
         ) : (
           <p>-</p>
         )}

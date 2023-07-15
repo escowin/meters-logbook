@@ -10,7 +10,7 @@ export const QUERY_ME = gql`
         _id
         activity
         meters
-        adjustedMeters
+        adjusted
         date
         notes
       }
@@ -25,8 +25,12 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
+      totalMeters
+      dailyMeters
       workouts {
         _id
+        meters
+        adjusted
       }
     }
   }
@@ -38,7 +42,7 @@ export const QUERY_WORKOUT = gql`
       _id
       activity
       meters
-      adjustedMeters
+      adjusted
       date
       notes
       username
@@ -52,7 +56,7 @@ export const QUERY_WORKOUTS = gql`
       _id
       activity
       meters
-      adjustedMeters
+      adjusted
       date
       notes
       username

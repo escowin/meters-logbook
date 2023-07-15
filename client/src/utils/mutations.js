@@ -25,13 +25,12 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_WORKOUT = gql`
-  mutation addWorkout($activity: String!, $date: String!, $meters: Int!, $adjustedMeters: Int!, $notes: String!) {
-    addWorkout(activity: $activity, meters: $meters, adjustedMeters: $adjustedMeters, date: $date, notes: $notes) {
+  mutation addWorkout($activity: String!, $date: String!, $meters: Int!, $notes: String!) {
+    addWorkout(activity: $activity, meters: $meters, date: $date, notes: $notes) {
       _id
       activity
       date
       meters
-      adjustedMeters
       createdAt
       notes
       username
