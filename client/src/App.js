@@ -46,18 +46,21 @@ const client = new ApolloClient({
 function App() {
   const date = new Date().getFullYear();
   const loggedIn = Auth.loggedIn();
-  let currentRoute = window.location.pathname.replace('/', '')
-  if (currentRoute === '') {
-    currentRoute = "home"
-  }
-  console.log(currentRoute)
+  // let currentRoute = window.location.pathname.replace('/', '')
+  // if (currentRoute === '' && loggedIn) {
+  //   currentRoute = "home-login"
+  // } else if (currentRoute === '') {
+  //   currentRoute = "home"
+  // }
+  // console.log(currentRoute)
+  // bug | className is only set on refresh. possible solution, useNavigate to track current route path might be a solution
 
   return (
     <ApolloProvider client={client}>
       {/* components for client-side routing */}
       <Router>
         <Header />
-        <main className={`${currentRoute}${loggedIn ? " login" : ""}`}>
+        <main className={`${loggedIn ? "main-login" : "main"}`}>
           <Routes>
             {/* uses url parameters in React Router for dynamic page content */}
             <Route path="/" element={<Home />} />
