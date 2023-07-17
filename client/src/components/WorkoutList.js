@@ -8,45 +8,28 @@ function WorkoutList({ workouts, title }) {
   if (!workouts.length) {
     return <h2>No workouts</h2>;
   }
+  // console.log(workouts)
 
   return (
     // logged in users see more details from the workouts query
     <>
       <h2>{title}</h2>
-      <ul className="workout-legend">
-        <li>activity</li>
-        <li>date</li>
-        <li>meters</li>
-      </ul>
-
-      <ul className="workouts">
+      <ul id="workouts">
+        <li className="workout list-item" id="workout-fields">
+          <p>date</p>
+          <p>activity</p>
+          <p className="workout-meters">meters</p>
+        </li>
         {workouts &&
-          workouts.map((workout) => (
-            <li
-              key={workout._id}
-              className={`workout ${loggedIn ? "workout-max" : "workout-min"}`}
-            >
-              <Link to={`/workout/${workout._id}`} className="activity">
-                <h3>{workout.activity}</h3>
-              </Link>
+          workouts.map((workout, i) => (
+            <li key={i} className="workout list-item">
               <p>{workout.date}</p>
-              <p className="meters">
-                {workout.meters}m
-                {loggedIn && workout.meters !== workout.adjusted ? (
-                  <span className="adjustedMeters">
-                    ({workout.adjusted}m)
-                  </span>
-                ) : null}
+              <Link to={`/workout/${workout._id}`}>{workout.activity}</Link>
+              <p className="workout-meters">
+                {loggedIn && workout.meters !== workout.adjusted
+                  ? `${workout.meters}m`
+                  : `${workout.adjusted}m`}
               </p>
-              {loggedIn ? (
-                <>
-                  <p>{workout.notes}</p>
-                  <Link to={`/profile/$workout.username}`}>
-                    {workout.username}
-                  </Link>
-                </>
-              ) : null}
-              {""}
             </li>
           ))}
       </ul>

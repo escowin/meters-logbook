@@ -77,6 +77,7 @@ export const QUERY_USER = gql`
         date
         activity
         meters
+        adjusted
       }
     }
   }

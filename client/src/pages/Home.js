@@ -18,8 +18,6 @@ function Home() {
   // destructured data object is the useQuery hook's response
   const { data: userData } = useQuery(QUERY_ME_BASIC);
 
-  // console.log(userData);
-
   return (
     <>
       {" "}
@@ -27,10 +25,21 @@ function Home() {
         <>
           <section className="user-section">
             <h2>{userData.me.username} stats</h2>
-            <p>total: {userData.me.totalMeters}m</p>
-            <p>monthly: {userData.me.monthlyMeters}m</p>
-            <p>weekly: {userData.me.weeklyMeters}m</p>
-            <p>daily: {userData.me.dailyMeters}m</p>
+            <p>
+              <span>total</span> 
+              <span>{userData.me.totalMeters}m</span>
+            </p>
+            <p>
+              <span>monthly</span>
+              <span>{userData.me.monthlyMeters}m</span></p>
+            <p>
+              <span>weekly</span>
+              <span>{userData.me.weeklyMeters}m</span>
+            </p>
+            <p>
+              <span>daily</span>
+              <span>{userData.me.dailyMeters}m</span>
+            </p>
           </section>
           <section className="form-section">
             <WorkoutForm />
@@ -41,7 +50,7 @@ function Home() {
         {loading ? (
           <article>loading...</article>
         ) : (
-          <WorkoutList workouts={workouts} title="all users workouts" />
+          <WorkoutList workouts={workouts} title="latest activity" />
         )}
       </section>
     </>

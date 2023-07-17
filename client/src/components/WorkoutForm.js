@@ -5,12 +5,13 @@ import { QUERY_WORKOUTS, QUERY_ME } from "../utils/queries";
 
 const WorkoutForm = () => {
   const [activity, setActivity] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().substr(0, 10));
   const [meters, setMeters] = useState("");
-  const [notes, setNotes] = useState("");
-  const [characterCount, setCharacterCount] = useState(0);
+  // set up Notes subdocument to handle note-related code
+  // const [notes, setNotes] = useState("");
+  // const [characterCount, setCharacterCount] = useState(0);
 
-  const activities = ["row", "erg", "kayak", "paddleboard", "cycle", "jog"];
+  const activities = ["row", "erg", "kayak", "sup", "bike", "jog", "swim"];
 
   // addWorkout runs the mutation
   const [addWorkout, { error }] = useMutation(ADD_WORKOUT, {
@@ -39,15 +40,12 @@ const WorkoutForm = () => {
   // update state based on form input changes
   const handleChange = (event) => {
     if (event.target.value.length <= 50) {
-      if (event.target.id === "activity") {
+      if (event.target.name === "activity") {
         setActivity(event.target.value);
       } else if (event.target.id === "date") {
         setDate(event.target.value);
       } else if (event.target.id === "meters") {
         setMeters(event.target.value);
-      } else if (event.target.id === "notes") {
-        setNotes(event.target.value);
-        setCharacterCount(event.target.value.length);
       }
     }
   };
@@ -62,7 +60,6 @@ const WorkoutForm = () => {
           activity,
           date,
           meters: parseInt(meters),
-          notes,
         },
       });
 
@@ -70,33 +67,28 @@ const WorkoutForm = () => {
       setActivity("");
       setDate("");
       setMeters("");
-      setNotes("");
-      setCharacterCount(0);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <form onSubmit={handleFormSubmit} className="workout-form">
+    <form onSubmit={handleFormSubmit} id="workout-form">
       <h2>Add workout</h2>
-      <article>
-        <label htmlFor="activity">activity</label>
-        <select
-          type="text"
-          id="activity"
-          className="input"
-          value={activity}
-          onChange={handleChange}
-        >
-          {activities.map((activity, i) => (
-            <option key={i} value={activity}>
-              {activity}
-            </option>
-          ))}
-        </select>
-      </article>
-
+      <fieldset>
+        <legend>activity</legend>
+        {activities.map((activity, i) => (
+          <div key={i}>
+            <input
+              type="radio"
+              name="activity"
+              value={activity}
+              onChange={handleChange}
+            />
+            <label htmlFor={activity}>{activity}</label>
+          </div>
+        ))}
+      </fieldset>
       <article>
         <label htmlFor="date">date</label>
         <input
@@ -117,28 +109,8 @@ const WorkoutForm = () => {
           onChange={handleChange}
         ></input>
       </article>
-
-      <article className="notes-wrapper">
-        <label htmlFor="notes">
-          notes
-          <span
-            className={`char ${characterCount === 50 || error ? "max" : "min"}`}
-          >
-            {characterCount}/50
-            {error && <span>error</span>}
-          </span>
-        </label>
-        <textarea
-          type="text"
-          id="notes"
-          className="input"
-          value={notes}
-          onChange={handleChange}
-          maxLength={50}
-        ></textarea>
-      </article>
-
       <button type="submit">add</button>
+      {error && <span>error</span>}
     </form>
   );
 };

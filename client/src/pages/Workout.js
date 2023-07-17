@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_WORKOUT } from "../utils/queries";
 import Auth from "../utils/auth";
-import "../assets/styles/workout-list.css";
+import "../assets/styles/workout.css"
 
 function Workout() {
   const loggedIn = Auth.loggedIn();
@@ -19,10 +19,9 @@ function Workout() {
   }
 
   return (
-    <section className="workout">
-      <h2>{workout.activity} </h2>
-      <article className="workout-details">
-        <h3>Activity details</h3>
+    <>
+      <section id="workout">
+        <h2>{workout.activity} </h2>
         {loggedIn ? (
           <>
             <p>User</p> <p>{workout.username}</p>
@@ -36,12 +35,12 @@ function Workout() {
         ) : (
           <p>-</p>
         )}
-      </article>
-      <article>
-        <h3>Notes</h3>
+      </section>
+      <section id="note-section">
+        <h2>Notes</h2>
         <p>{workout.notes}</p>
-      </article>
-    </section>
+      </section>
+    </>
   );
 }
 

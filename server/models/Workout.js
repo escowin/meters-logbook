@@ -40,17 +40,18 @@ const workoutSchema = new Schema(
 
 workoutSchema.virtual("adjusted").get(function () {
   switch (this.activity) {
-    case "paddleboarding":
-    case "swimming":
+    case "sup":
+    case "swim":
       result = parseInt(this.meters) * 3;
       break;
-    case "biking":
+    case "bike":
       result = parseInt(this.meters) * 4;
       break;
     default:
       result = parseInt(this.meters);
       break;
   }
+  return result;
 });
 const Workout = model("Workout", workoutSchema);
 

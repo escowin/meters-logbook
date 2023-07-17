@@ -60,7 +60,7 @@ function App() {
       {/* components for client-side routing */}
       <Router>
         <Header />
-        <main className={`${loggedIn ? "main-login" : "main"}`}>
+        <main id={`${loggedIn ? "main-login" : "main"}`}>
           <Routes>
             {/* uses url parameters in React Router for dynamic page content */}
             <Route path="/" element={<Home />} />

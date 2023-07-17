@@ -1,24 +1,71 @@
-.logged-in {
-    /* overflow-y: scroll; */
+#main-login {
     gap: .75rem;
 }
 
-.logged-in section {
+#main-login section {
     width: 100%;
 }
 
+/* login sections */
+/* user section */
 .user-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     grid-area: a;
+    position: sticky;
 }
 
+.user-section h2 {
+    grid-column: span 4;
+}
+
+.user-section p {
+    display: flex;
+    flex-direction: column;
+    padding-left: .5rem;
+}
+
+/* form section */
 .form-section {
     grid-area: b;
 }
 
+#workout-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .25rem;
+}
+
+#workout-form h2, #workout-form fieldset, #workout-form button {
+    grid-column: span 2;
+}
+
+#workout-form fieldset {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .5rem;
+    padding: 0 .5rem .25rem .5rem;
+}
+
+/* workout section */
 .workouts-section {
     grid-area: c;
-    /* height: 100%; */
     width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#workouts {
+    gap: .5rem;
+    overflow-y: scroll;
+    height: 100%;
+    padding: 0 .5rem;
+}
+
+.workout {
+    display: grid;
+    grid-template-columns: 1fr 6rem 5rem;
+    gap: .5rem;
 }
 
 @media screen and (min-width: 1024px) {
@@ -36,4 +83,13 @@
     .logged-in section {
         height: auto;
     } */
+
+    .workouts-section {
+        grid-row: span 2;
+        height: 100%;
+    }
+
+    .form-section {
+        width: 40rem;
+    }
 }
