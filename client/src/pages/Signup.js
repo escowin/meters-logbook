@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import "../assets/styles/forms.css";
+import "../assets/styles/login.css";
 
 function Signup() {
   const [formState, setFormState] = useState({
@@ -40,8 +40,8 @@ function Signup() {
   };
 
   return (
-    <>
-      <form className="signup-form" onSubmit={handleFormSubmit}>
+    <section>
+      <form className="login-form" onSubmit={handleFormSubmit}>
         <h2>Sign up</h2>
         <label htmlFor="username">username</label>
         <input
@@ -73,7 +73,7 @@ function Signup() {
         <button type="submit">submit</button>
       </form>
       {error && <section>Sign up failed</section>}
-    </>
+    </section>
   );
 }
 export default Signup;

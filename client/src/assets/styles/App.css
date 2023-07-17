@@ -110,6 +110,7 @@ a,
 }
 
 /* display */
+.display-md,
 .display-lg {
   display: none;
 }
@@ -119,6 +120,10 @@ input:focus {
 }
 
 @media screen and (min-width: 768px) {
+  .display-md {
+    display: block;
+  }
+
   main {
     font-size: 125%;
   }

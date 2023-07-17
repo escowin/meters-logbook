@@ -31,7 +31,7 @@ const resolvers = {
     // workout queries
     workouts: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Workout.find(params).sort({ createdAt: -1 });
+      return Workout.find(params).sort({ date: -1 });
     },
 
     workout: async (parent, { _id }) => {

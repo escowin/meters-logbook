@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
-import "../assets/styles/forms.css";
+import "../assets/styles/login.css";
 
 function Login(props) {
   const [formState, setFormState] = useState({ username: "", password: "" });
@@ -37,7 +37,7 @@ function Login(props) {
   };
 
   return (
-    <>
+    <section>
       <form className="login-form" onSubmit={handleFormSubmit}>
         <h2 className="header">Login</h2>
 
@@ -59,7 +59,7 @@ function Login(props) {
         <button type="submit">submit</button>
       </form>
       {error && <section>Login failed</section>}
-    </>
+    </section>
   );
 }
 
