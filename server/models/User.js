@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { getWeek } = require("../utils/helpers");
-const dayjs = require('dayjs')
+const dayjs = require("dayjs");
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
@@ -48,9 +48,10 @@ userSchema.virtual("totalMeters").get(function () {
 
 userSchema.virtual("dailyMeters").get(function () {
   let total = 0;
-  const today = new Date().toISOString().slice(0, 10);
+  const today = dayjs().format("YYYY-MM-DD");
+
   this.workouts.forEach((workout) => {
-    if (workout.date === today) {
+    if (dayjs(workout.date).format("YYYY-MM-DD") === today) {
       total += workout.meters;
     }
   });
@@ -59,14 +60,14 @@ userSchema.virtual("dailyMeters").get(function () {
 
 userSchema.virtual("monthlyMeters").get(function () {
   let total = 0;
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
+  const currentDate = dayjs();
+  const year = currentDate.year();
+  const month = currentDate.month() + 1;
 
   this.workouts.forEach((workout) => {
-    const workoutDate = new Date(workout.date);
-    const workoutYear = workoutDate.getFullYear();
-    const workoutMonth = workoutDate.getMonth() + 1;
+    const workoutDate = dayjs(workout.date);
+    const workoutYear = workoutDate.year();
+    const workoutMonth = workoutDate.month() + 1;
 
     if (workoutYear === year && workoutMonth === month) {
       total += workout.meters;
@@ -82,19 +83,11 @@ userSchema.virtual("weeklyMeters").get(function () {
   const year = currentDate.year();
   const week = getWeek(currentDate);
 
-  // const date = new Date();
-  // const year = date.getFullYear();
-  // const week = getWeek(date);
-
   this.workouts.forEach((workout) => {
     const workoutDate = dayjs(workout.date);
     const workoutYear = workoutDate.year();
     const workoutWeek = getWeek(workoutDate);
 
-    // const workoutDate = new Date(workout.date);
-    // const workoutYear = workoutDate.getFullYear();
-    // const workoutWeek = getWeek(workoutDate);
-    console.log(`${workout.date} is week: ${workoutWeek}`)
     if (workoutYear === year && workoutWeek === week) {
       total += workout.meters;
     }
@@ -105,11 +98,11 @@ userSchema.virtual("weeklyMeters").get(function () {
 
 userSchema.virtual("remaining").get(function () {
   if (!this.weeklyGoal) {
-    return 0
+    return 0;
   }
-  const result = this.weeklyGoal - this.weeklyMeters
+  const result = this.weeklyGoal - this.weeklyMeters;
   return result;
-})
+});
 
 // middleware | presaves to create password
 userSchema.pre("save", async function (next) {

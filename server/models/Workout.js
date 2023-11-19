@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const dateFormat = require("../utils/dateFormat");
+const { dateFormat } = require("../utils/helpers");
 
 const workoutSchema = new Schema(
   {
@@ -53,6 +53,7 @@ workoutSchema.virtual("adjusted").get(function () {
   }
   return result;
 });
+
 const Workout = model("Workout", workoutSchema);
 
 module.exports = Workout;

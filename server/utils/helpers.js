@@ -17,4 +17,12 @@ function getWeek(date) {
   return weekNumber;
 }
 
-module.exports = { getWeek };
+// formats timestamps to YYYY-MM-DD
+function dateFormat(timestamp) {
+  const dateObj = dayjs(timestamp);
+  const formattedTimeStamp = dateObj.format("YYYY-MM-DD ddd hh:mm a");
+
+  return formattedTimeStamp;
+}
+
+module.exports = { getWeek, dateFormat };
