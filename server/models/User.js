@@ -22,6 +22,10 @@ const userSchema = new Schema(
       required: true,
       minLength: 5,
     },
+    weeklyGoal: {
+      type: Number,
+      required: false,
+    },
     workouts: [
       {
         type: Schema.Types.ObjectId,
@@ -82,6 +86,7 @@ userSchema.virtual("weeklyMeters").get(function () {
     const workoutDate = new Date(workout.date);
     const workoutYear = workoutDate.getFullYear();
     const workoutWeek = getWeek(workoutDate);
+    console.log(workoutWeek)
     if (workoutYear === year && workoutWeek === week) {
       total += workout.meters;
     }
@@ -89,6 +94,14 @@ userSchema.virtual("weeklyMeters").get(function () {
 
   return total;
 });
+
+userSchema.virtual("remaining").get(function () {
+  if (!this.weeklyGoal) {
+    return 0
+  }
+  const result = this.weeklyGoal - this.weeklyMeters
+  return result;
+})
 
 // middleware | presaves to create password
 userSchema.pre("save", async function (next) {
