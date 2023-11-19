@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { getWeek } = require("../utils/helpers");
-
+const dayjs = require('dayjs')
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
@@ -78,15 +78,23 @@ userSchema.virtual("monthlyMeters").get(function () {
 
 userSchema.virtual("weeklyMeters").get(function () {
   let total = 0;
-  const date = new Date();
-  const year = date.getFullYear();
-  const week = getWeek(date);
+  const currentDate = dayjs();
+  const year = currentDate.year();
+  const week = getWeek(currentDate);
+
+  // const date = new Date();
+  // const year = date.getFullYear();
+  // const week = getWeek(date);
 
   this.workouts.forEach((workout) => {
-    const workoutDate = new Date(workout.date);
-    const workoutYear = workoutDate.getFullYear();
+    const workoutDate = dayjs(workout.date);
+    const workoutYear = workoutDate.year();
     const workoutWeek = getWeek(workoutDate);
-    console.log(workoutWeek)
+
+    // const workoutDate = new Date(workout.date);
+    // const workoutYear = workoutDate.getFullYear();
+    // const workoutWeek = getWeek(workoutDate);
+    console.log(`${workout.date} is week: ${workoutWeek}`)
     if (workoutYear === year && workoutWeek === week) {
       total += workout.meters;
     }
