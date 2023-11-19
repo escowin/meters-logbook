@@ -39,6 +39,8 @@ const typeDefs = gql`
     login(username: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addWorkout(activity: String!, meters: Int!, date: String!, notes: String): Workout
+    deleteWorkout(_id: ID!): Workout
+    editUser(_id: ID!, weeklyGoal: Int): User
   }
 
   type Auth {

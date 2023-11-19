@@ -42,10 +42,14 @@ const resolvers = {
   // post, put, delete requests
   Mutation: {
     addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+      try {
+        const user = await User.create(args);
+        const token = signToken(user);
 
-      return { token, user };
+        return { token, user };
+      } catch (err) {
+        throw new Error(`Failed to sign up. Original error: ${err.message}`);
+      }
     },
 
     login: async (parent, { username, password }) => {
@@ -54,18 +58,26 @@ const resolvers = {
         throw new AuthenticationError("incorrect credentials");
       }
 
-      const correctPw = await user.isCorrectPassword(password);
-      if (!correctPw) {
-        throw new AuthenticationError("incorrect credentials");
-      }
+      try {
+        const correctPw = await user.isCorrectPassword(password);
+        if (!correctPw) {
+          throw new AuthenticationError("incorrect credentials");
+        }
+        const token = signToken(user);
 
-      const token = signToken(user);
-      return { token, user };
+        return { token, user };
+      } catch (err) {
+        throw new Error(`Failed to login. Original error: ${err.message}`);
+      }
     },
 
-    // accessible to logged in users
+    // mutations accesible to logged in users
     addWorkout: async (parent, args, context) => {
-      if (context.user) {
+      if (!context.user) {
+        throw new AuthenticationError("login required");
+      }
+
+      try {
         const workout = await Workout.create({
           ...args,
           username: context.user.username,
@@ -78,12 +90,50 @@ const resolvers = {
         );
 
         return workout;
+      } catch (err) {
+        throw new Error(
+          `Failed to add workout. Original error: ${err.message}`
+        );
       }
-      throw new AuthenticationError("you ned to be logged in");
     },
+    deleteWorkout: async (parent, { _id }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("login required");
+      }
+      try {
+        const workout = await Workout.findByIdAndDelete(_id);
 
-    // update User mutation
-    // updateUser: async (parent, args, context) = {},
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { workouts: workout._id } },
+          { new: true }
+        );
+
+        return workout;
+      } catch (err) {
+        throw new Error(
+          `Failed to delete workout. Original error: ${err.message}`
+        );
+      }
+    },
+    // updates field but responds w/ error message for virtuals: "Int cannot represent non-integer value: NaN"
+    editUser: async (parent, { _id, ...data }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("login required");
+      }
+
+      try {
+        const result = await User.findByIdAndUpdate(
+          _id,
+          { $set: data },
+          { new: true }
+        );
+
+        return result;
+      } catch (err) {
+        throw new Error(`Failed to edit user. Original error: ${err.message}`);
+      }
+    },
   },
 };
 
