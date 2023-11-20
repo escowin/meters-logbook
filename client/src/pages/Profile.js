@@ -1,14 +1,12 @@
 import { Navigate, useParams } from "react-router-dom";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { ADD_CREWMATE } from "../utils/mutations";
 import Auth from "../utils/auth";
 import WorkoutList from "../components/WorkoutList";
 import WorkoutForm from "../components/WorkoutForm";
 
 // query/mutation note: re-request data from server not needed. apollo client aches query results, updates cache with every mutation
 function Profile() {
-  const [addCrewmate] = useMutation(ADD_CREWMATE);
   const { username: userParam } = useParams();
 
   // adds variables to a `useQuery` hook to run queries with arguments
@@ -36,9 +34,7 @@ function Profile() {
 
   const handleClick = async (e) => {
     try {
-      await addCrewmate({
-        variables: { id: user._id },
-      });
+      console.log("clicked")
     } catch (e) {
       console.error(e);
     }

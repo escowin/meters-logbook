@@ -31,8 +31,10 @@ export const QUERY_ME_BASIC = gql`
       dailyMeters
       workouts {
         _id
+        date
         meters
         adjusted
+        activity
       }
     }
   }

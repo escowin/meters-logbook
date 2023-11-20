@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { formatDate } from "../utils/helpers";
 
-function WorkoutList({ workouts, title }) {
+function WorkoutList({ workouts }) {
   // conditional rendering
   const loggedIn = Auth.loggedIn();
   // const minWidth = window.innerWidth >= 768;
@@ -28,8 +28,8 @@ function WorkoutList({ workouts, title }) {
 
   return (
     // logged in users see more details from the workouts query
-    <>
-      <h2>{title}</h2>
+    <section>
+      <h2>Workouts</h2>
       <ul id="workouts">
         <li className="workout list-item" id="workout-fields">
           <h3>date</h3>
@@ -55,7 +55,7 @@ function WorkoutList({ workouts, title }) {
             </li>
           ))}
       </ul>
-    </>
+    </section>
   );
 }
 
