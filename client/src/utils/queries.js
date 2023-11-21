@@ -6,13 +6,16 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      totalMeters
+      monthlyMeters
+      weeklyMeters
+      dailyMeters
       workouts {
         _id
-        activity
+        date
         meters
         adjusted
-        date
-        notes
+        activity
       }
     }
   }

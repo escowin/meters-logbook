@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import { form, docMutation } from "../utils/helpers";
+import { form, docMutation, updateCache } from "../utils/helpers";
 
 function WorkoutForm({ initialValues, doc, type }) {
   const fields =
@@ -10,18 +10,7 @@ function WorkoutForm({ initialValues, doc, type }) {
     // updates client side cache
     update(cache, { data }) {
       try {
-        console.log(data);
-        //       const { me } = cache.readQuery({ query: QUERY_ME });
-        //       console.log(me);
-        //       cache.writeQuery({
-        //         query: QUERY_ME,
-        //         data: {
-        //           me: {
-        //             ...me,
-        //             workouts: [...me.workouts, addWorkout],
-        //           },
-        //         },
-        //       });
+        updateCache(cache, data, type)
       } catch (err) {
         console.error(err);
       }
@@ -56,7 +45,6 @@ function WorkoutForm({ initialValues, doc, type }) {
   // update state based on form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name + ": " + value)
     setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
@@ -66,17 +54,21 @@ function WorkoutForm({ initialValues, doc, type }) {
 
     // Carries out client-server communication
     try {
+      if (formState.meters) {
+        // Converts string to integer for GraphQL mutation acceptance
+        formState.meters = parseInt(formState.meters)
+      }
       console.log(formState)
       // Sets the object to mirror the GraphQL schema
-      // const mutation = {
-      //   ...formState,
-      //   ...(type === "edit" ? { id: initialValues._id } : {}),
-      // };
-      // await document({ variables: mutation });
+      const variables = {
+        ...formState,
+        ...(type === "edit" ? { id: initialValues._id } : {}),
+      };
+      await mutation({ variables: variables });
       // postMutation(type, navigate, setEditSelected);
     } catch (err) {
       // Error handling
-      console.error(err);
+      console.error(`mutation failed. original error: ${err}`);
     }
   };
 
