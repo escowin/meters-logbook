@@ -10,8 +10,6 @@ function Home() {
   const { loading, data } = useQuery(QUERY_ME_BASIC);
   const user = data?.me || {};
   const workouts = user?.workouts || [];
-  console.log(user);
-  console.log(workouts);
 
   if (loading) {
     <section>Loading...</section>;
@@ -21,7 +19,7 @@ function Home() {
     <>
       {loggedIn && user?.username ? (
         <>
-          <WorkoutForm/>
+          <WorkoutForm initialValues={""} doc={"workout"} type={"add"}/>
           <WorkoutList workouts={workouts}/>
         </>
       ) : (

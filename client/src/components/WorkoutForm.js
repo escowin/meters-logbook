@@ -1,54 +1,62 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_WORKOUT } from "../utils/mutations";
-import { QUERY_WORKOUTS, QUERY_ME } from "../utils/queries";
+import { form, docMutation } from "../utils/helpers";
 
-function WorkoutForm() {
-  const formFields = [
-    { name: "date", type: "date", required: true },
-    { name: "meters", type: "number", required: true, max: 9999 },
-    {
-      name: "activity",
-      type: "radio",
-      max: 10,
-      radios: ["row", "erg", "kayak", "sup", "bike", "jog", "swim"],
-      required: true,
+function WorkoutForm({ initialValues, doc, type }) {
+  const fields =
+    type === "login" || type === "sign-up" ? form.login : form[doc];
+
+  const [mutation, { error }] = useMutation(docMutation(doc, type), {
+    // updates client side cache
+    update(cache, { data }) {
+      try {
+        console.log(data);
+        //       const { me } = cache.readQuery({ query: QUERY_ME });
+        //       console.log(me);
+        //       cache.writeQuery({
+        //         query: QUERY_ME,
+        //         data: {
+        //           me: {
+        //             ...me,
+        //             workouts: [...me.workouts, addWorkout],
+        //           },
+        //         },
+        //       });
+      } catch (err) {
+        console.error(err);
+      }
     },
-    { name: "note", type: "text", max: 180, required: false },
-  ];
+  });
 
-  // addWorkout runs the mutation
-  // const [addWorkout, { error }] = useMutation(ADD_WORKOUT, {
-  //   update(cache, { data: { addWorkout } }) {
-  //     // handles cases when workouts dont yet exist
-  //     try {
-  //       if (addWorkout.activity === "erg") {
-  //         addWorkout.adjusted = addWorkout.meters;
-  //       }
-  //       console.log(addWorkout); // missing adjusted field
+  // State variables & functions
+  const [formState, setFormState] = useState({});
 
-  //       // updates me array's cache
-  //       const { me } = cache.readQuery({ query: QUERY_ME });
-  //       console.log(me);
-  //       cache.writeQuery({
-  //         query: QUERY_ME,
-  //         data: {
-  //           me: {
-  //             ...me,
-  //             workouts: [...me.workouts, addWorkout],
-  //           },
-  //         },
-  //       });
-  //     } catch (e) {
-  //       console.warn("first workout insertion by user");
-  //       console.error(e);
-  //     }
-  //   },
-  // });
+  useEffect(() => {
+    // filters 'profile' object based on the 'details' array
+    const docFields = {};
+    fields.forEach((field) => {
+      if (field.type === "date") {
+        const today = new Date()
+          .toLocaleDateString("en-CA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })
+          .split("/")
+          .join("/");
+        docFields[field.name] = initialValues[field.name] || today;
+      } else {
+        docFields[field.name] = initialValues[field.name] || "";
+      }
+    });
+    // Sets the filtered 'profile' object as the initial 'formState'
+    setFormState(docFields);
+  }, [initialValues, fields]);
 
   // update state based on form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name + ": " + value)
     setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
@@ -58,14 +66,14 @@ function WorkoutForm() {
 
     // Carries out client-server communication
     try {
+      console.log(formState)
       // Sets the object to mirror the GraphQL schema
       // const mutation = {
       //   ...formState,
       //   ...(type === "edit" ? { id: initialValues._id } : {}),
       // };
-
-        // await document({ variables: mutation });
-        // postMutation(type, navigate, setEditSelected);
+      // await document({ variables: mutation });
+      // postMutation(type, navigate, setEditSelected);
     } catch (err) {
       // Error handling
       console.error(err);
@@ -78,7 +86,7 @@ function WorkoutForm() {
       case "radio":
         return (
           <fieldset id={field.name} key={i}>
-            <legend>(field.name)</legend>
+            <legend>{field.name}</legend>
             {field.radios.map((radio, j) => (
               <label key={j} htmlFor={radio}>
                 <input
@@ -90,7 +98,7 @@ function WorkoutForm() {
                   checked={formState[field.name] === radio}
                   onChange={handleChange}
                 />
-                {format.id(radio)}
+                {radio}
               </label>
             ))}
           </fieldset>
@@ -119,7 +127,7 @@ function WorkoutForm() {
     <section>
       <form onSubmit={handleFormSubmit} id="workout-form">
         <h2>Add workout</h2>
-        {formFields.map((field, i) => displayField(field, i))}
+        {fields.map((field, i) => displayField(field, i))}
         <button type="submit">add</button>
         {error && <span>error</span>}
       </form>

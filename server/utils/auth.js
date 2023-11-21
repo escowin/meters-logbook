@@ -1,17 +1,10 @@
-require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 // optional | secrets should be stored in .env
-const secret = process.env.SECRET;
-const expiration = "10h";
+const secret = "testSecret";
+const expiration = "14d";
 
 module.exports = {
-  // expects user object & adds user's properties to the token
-  signToken: function ({ username, email, _id }) {
-    const payload = { username, email, _id };
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-  },
-
   // middleware | verifies jwt
   authMiddleware: function ({ req }) {
     // allows jwt to be sent via body, query or headers
@@ -38,5 +31,10 @@ module.exports = {
 
     // returns the updated req obj
     return req;
+  },
+  // expects user object & adds user's properties to the token
+  signToken: function ({ username, _id }) {
+    const payload = { username, _id };
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
