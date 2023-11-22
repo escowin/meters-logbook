@@ -116,7 +116,7 @@ function WorkoutForm({ initialValues, doc, type }) {
   };
 
   return (
-    <section>
+    <section className="form-section">
       <form onSubmit={handleFormSubmit} id="workout-form">
         <h2>Add workout</h2>
         {fields.map((field, i) => displayField(field, i))}

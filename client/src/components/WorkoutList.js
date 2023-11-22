@@ -28,9 +28,9 @@ function WorkoutList({ workouts }) {
 
   return (
     // logged in users see more details from the workouts query
-    <section>
+    <section className="list-section">
       <h2>Workouts</h2>
-      <ul id="workouts">
+      <ul className="list" id="workouts">
         <li className="workout list-item" id="workout-fields">
           <h3>date</h3>
           <h3>activity</h3>
@@ -39,10 +39,10 @@ function WorkoutList({ workouts }) {
         </li>
         {workouts &&
           workouts.map((workout, i) => (
-            <li key={i} className="workout list-item">
+            <li key={i} className="workout item">
               <p>{formatDate(workout.date)}</p>
               <Link to={`/workout/${workout._id}`}>{workout.activity}</Link>
-              <p className="workout-meters">
+              <p className="meters">
                 {loggedIn && !minWidth
                   ? `${workout.adjusted}m`
                   : `${workout.meters}m`}

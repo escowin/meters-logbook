@@ -70,7 +70,9 @@ form textarea:focus {
 
 
 @media screen and (min-width: 768px) {
-  .login-form, .signup-form {
+
+  .login-form,
+  .signup-form {
     gap: .25rem;
   }
 
@@ -78,17 +80,20 @@ form textarea:focus {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: .5rem;
-  }
 
-  .workout-form h2, .workout-form button, .notes-wrapper  {
-    grid-column: span 3;
-  }
+    & h2,
+    button,
+    .notes-wrapper {
+      grid-column: span 3;
+    }
 
-  .workout-form article {
-    display: flex;
-    flex-direction: column;
+    & article {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
+
 @media screen and (min-width: 1024px) {
 
   form input {

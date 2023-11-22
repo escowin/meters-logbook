@@ -88,12 +88,12 @@ button {
   background-color: var(--blue);
   margin-top: .5rem;
   font-size: 1.25rem;
-}
 
-button:active,
-button:hover {
-  background-color: var(--red);
-  outline: 1px solid var(--dark-overlay);
+  &:active,
+  &:hover {
+    background-color: var(--red);
+    outline: 1px solid var(--dark-overlay);
+  }
 }
 
 /* typography */
@@ -136,9 +136,9 @@ input:focus {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: repeat(1fr);
-    grid-template-areas: 
-    "a b"
-    "c c";
+    grid-template-areas:
+      "a b"
+      "c c";
     overflow-x: hidden;
   }
 
@@ -165,9 +165,9 @@ input:focus {
     display: grid;
     grid-template-columns: max-content auto;
     grid-template-rows: auto 1fr;
-    grid-template-areas: 
-    "a c"
-    "b c";
+    grid-template-areas:
+      "a c"
+      "b c";
     gap: 1rem;
     align-items: flex-start;
   }
