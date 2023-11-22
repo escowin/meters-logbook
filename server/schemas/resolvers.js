@@ -9,7 +9,16 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
-          .populate("workouts");
+          .populate({
+            path: "workouts",
+            // Sorts from newest to oldest
+            options: {
+              sort: {
+                date: -1,
+                createdAt: -1,
+              },
+            },
+          });
 
         return userData;
       }
