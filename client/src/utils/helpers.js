@@ -7,7 +7,6 @@ export function formatDate(date) {
 
 export const form = {
   workout: [
-    { name: "date", type: "date", required: true },
     {
       name: "activity",
       type: "radio",
@@ -15,6 +14,7 @@ export const form = {
       radios: ["row", "erg", "kayak", "sup", "bike", "jog", "swim"],
       required: true,
     },
+    { name: "date", type: "date", required: true },
     { name: "meters", type: "number", required: true, max: 9999 },
     { name: "note", type: "text", max: 180, required: false },
   ],

@@ -1,9 +1,7 @@
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import { QUERY_USER, QUERY_STATS } from "../utils/queries";
 import Auth from "../utils/auth";
-import WorkoutList from "../components/WorkoutList";
-import WorkoutForm from "../components/WorkoutForm";
 
 // query/mutation note: re-request data from server not needed. apollo client aches query results, updates cache with every mutation
 function Profile() {
@@ -11,12 +9,14 @@ function Profile() {
 
   // adds variables to a `useQuery` hook to run queries with arguments
   // if there's a URL bar value in userParam, use query user. no value uses query me
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_STATS, {
     variables: { username: userParam },
   });
 
   // handles each type of the above response
   const user = data?.me || data?.user || {};
+  const { username, ...stats } = user;
+  console.log(stats);
 
   // navigates user to `/profile` if username is the logged in user. compares jwt username value against userParam value
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -32,47 +32,19 @@ function Profile() {
     return <section>Loading...</section>;
   }
 
-  const handleClick = async (e) => {
-    try {
-      console.log("clicked")
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
+  // UI | user stat object key-values are mapped to keep JSX DRY
   return (
     <>
-      <section className="user-section">
-        <h2>{userParam ? `${user.username}` : "me"}</h2>
-        <p>workouts : {user.workouts.length}</p>
-        {/* renders only in `/profile` */}
-        {!userParam && (
-          <>
-            <p>coach : something</p>
-            <h3>meters</h3>
-            <p>week :</p>
-            <p>month :</p>
-            <p>total :</p>
-          </>
-        )}
-      </section>
-      {/* renders only in `/profile/:username` */}
-      {userParam && Auth.loggedIn (
-        <section>
-          <button onClick={handleClick}>add crewmate</button>
-        </section>
-      )}
-      {!userParam && (
-        <section className="form-section">
-          <WorkoutForm />
-        </section>
-      )}
-      <section className="workouts-section">
-        <WorkoutList
-          workouts={user.workouts}
-          // title={`${user.username}'s workouts:`}
-          title={userParam ? `${user.username} workouts` : "my workouts"}
-        />
+      <section>
+        <h2>{username} stats</h2>
+        {Object.entries(stats)
+          .filter(([key]) => !key.startsWith("_"))
+          .map(([key, value], i) => (
+            <article key={i} className="stats">
+              <p>{key}</p>
+              <p>{value}</p>
+            </article>
+          ))}
       </section>
     </>
   );

@@ -119,6 +119,21 @@ input:focus {
   outline: none;
 }
 
+/* global form styles */
+form {
+  & .label {
+    display: flex;
+    flex-direction: column;
+  }
+  & fieldset {
+    border: 1px solid var(--light-text);
+    & label {
+      display: flex;
+      gap: .5rem;
+    }
+  }
+}
+
 @media screen and (min-width: 768px) {
   .display-md {
     display: block;

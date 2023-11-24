@@ -1,22 +1,15 @@
 import { gql } from "@apollo/client";
 
-export const QUERY_ME = gql`
+export const QUERY_STATS = gql`
   {
     me {
-      _id
       username
-      email
-      totalMeters
-      monthlyMeters
-      weeklyMeters
       dailyMeters
-      workouts {
-        _id
-        date
-        meters
-        adjusted
-        activity
-      }
+      weeklyMeters
+      monthlyMeters
+      totalMeters
+      weeklyGoal
+      remaining
     }
   }
 `;

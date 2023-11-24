@@ -97,7 +97,7 @@ function WorkoutForm({ initialValues, doc, type }) {
         );
       default:
         return (
-          <label key={i} htmlFor={field.name}>
+          <label key={i} htmlFor={field.name} className="label">
             {field.name}
             <input
               type={field.type}

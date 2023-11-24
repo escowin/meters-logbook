@@ -9,7 +9,7 @@ function Header() {
       path: "",
     },
     {
-      name: "me",
+      name: "stats",
       path: "profile",
     },
   ];
