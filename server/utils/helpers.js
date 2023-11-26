@@ -17,6 +17,13 @@ function getWeek(date) {
   return weekNumber;
 }
 
+function getDates(currentWeek) {
+  console.log(currentWeek)
+  let arr = [];
+  // get Mon - Sun date strings, push to arr
+  return arr
+}
+
 // formats timestamps to YYYY-MM-DD
 function dateFormat(timestamp) {
   const dateObj = dayjs(timestamp);
@@ -25,4 +32,4 @@ function dateFormat(timestamp) {
   return formattedTimeStamp;
 }
 
-module.exports = { getWeek, dateFormat };
+module.exports = { getWeek, dateFormat, getDates };
