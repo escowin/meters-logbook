@@ -13,6 +13,7 @@ const typeDefs = gql`
     dailyMeters: Int
     weeklyGoal: Int
     remaining: Int
+    weeklyBreakdown: String
     workouts: [Workout]
   }
 
