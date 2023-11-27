@@ -104,15 +104,32 @@ userSchema.virtual("remaining").get(function () {
   return result;
 });
 
+// Breaks does this week's meters by days
 userSchema.virtual("weeklyBreakdown").get(function () {
-  // use the current week to get the dates of this monday - sunday. each date is used to filter through the workouts array creating a new array. the new array's meter are summed up. the totals of each day of the week are formatted as `<day>: <meters>` template strings Mon - Sun
+  // Gets the current week, year, and an array of dates for this week
   const currentWeek = getWeek(dayjs());
   const currentYear = dayjs().year();
   const dates = getDates(currentWeek, currentYear);
-  console.log(dates)
 
+  // Initializes an empty array to store daily breakdowns
+  let arr = [];
 
-  return;
+  // Iterates through the dates array and filter workouts for each date, summing up meters
+  for (let i = 0; i < dates.length; i++) {
+    // Filters workouts for the current date and calculate the sum of meters
+    const result = this.workouts
+      .filter((workout) => workout.date === dates[i])
+      .reduce((totalMeters, workout) => totalMeters + workout.meters, 0);
+
+    // Formats the date to get the day of the week
+    const dayOfTheWeek = dayjs(dates[i]).format("ddd");
+
+    // Creates a string in the format "<day>: <meters>" and pushes it to the array
+    arr.push(`${dayOfTheWeek}: ${result}`);
+  }
+  console.log(arr);
+  // Joins the array elements into a string separated by newline characters, returning the result
+  return arr.join("\n");
 });
 
 // middleware | presaves to create password

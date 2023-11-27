@@ -29,7 +29,7 @@ function getDates(currentWeek, year) {
   const weekDates = Array.from({ length: 7 }, (_, i) => firstDay.add(i, "day"));
   // Formats the dates as YYYY-MM-DD strings
   const formattedDates = weekDates.map((date) => date.format("YYYY-MM-DD"));
-  console.log(formattedDates);
+
   return formattedDates;
 }
 
