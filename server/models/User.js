@@ -107,12 +107,11 @@ userSchema.virtual("remaining").get(function () {
 userSchema.virtual("weeklyBreakdown").get(function () {
   // use the current week to get the dates of this monday - sunday. each date is used to filter through the workouts array creating a new array. the new array's meter are summed up. the totals of each day of the week are formatted as `<day>: <meters>` template strings Mon - Sun
   const currentWeek = getWeek(dayjs());
-  const dates = getDates(currentWeek);
+  const currentYear = dayjs().year();
+  const dates = getDates(currentWeek, currentYear);
+  console.log(dates)
 
-  // iterates through the days of the week
-  // for (let i = 0; i < 7; i++) {
-  //   console.log(i)
-  // }
+
   return;
 });
 
