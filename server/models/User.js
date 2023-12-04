@@ -127,7 +127,7 @@ userSchema.virtual("weeklyBreakdown").get(function () {
     // Creates a string in the format "<day>: <meters>" and pushes it to the array
     arr.push(`${dayOfTheWeek}: ${result}`);
   }
-  console.log(arr);
+
   // Joins the array elements into a string separated by newline characters, returning the result
   return arr.join("\n");
 });

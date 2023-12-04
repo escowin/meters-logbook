@@ -10,6 +10,7 @@ export const QUERY_STATS = gql`
       totalMeters
       weeklyGoal
       remaining
+      weeklyBreakdown
     }
   }
 `;

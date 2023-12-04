@@ -1,33 +1,16 @@
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Auth from "../utils/auth";
 import { formatDate } from "../utils/helpers";
 
 function WorkoutList({ workouts }) {
-  // conditional rendering
-  const loggedIn = Auth.loggedIn();
-  // const minWidth = window.innerWidth >= 768;
-  const [minWidth, setMinWidth] = useState(window.innerWidth >= 768);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setMinWidth(window.innerWidth >= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   if (!workouts.length) {
-    return <h2>No workouts</h2>;
+    return (
+      <section>
+        <p>Enter a workout</p>
+      </section>
+    );
   }
-  // console.log(workouts)
 
   return (
-    // logged in users see more details from the workouts query
     <section className="list-section">
       <h2>Logbook</h2>
       <ul className="list" id="workouts">
@@ -35,25 +18,20 @@ function WorkoutList({ workouts }) {
           <h3>type</h3>
           <h3>date</h3>
           <h3 className="meters">meters</h3>
-          <h3 className="workout-meters display-md">adjusted</h3>
+          <h3 className="adjusted display-md">adjusted</h3>
         </li>
-        {workouts &&
-          workouts.map((workout, i) => (
-            <li key={i} className="workout item">
-              <Link to={`/workout/${workout._id}`}>{workout.activity}</Link>
-              <p>{formatDate(workout.date)}</p>
-              <p className="meters">
-                {loggedIn && !minWidth
-                  ? `${workout.adjusted}m`
-                  : `${workout.meters}m`}
-              </p>
-              <p className="workout-meters display-md">
-                {workout.meters === workout.adjusted
-                  ? "-"
-                  : `${workout.adjusted}m`}
-              </p>
-            </li>
-          ))}
+        {workouts.map((workout, i) => (
+          <li key={i} className="workout item">
+            <Link to={`/workout/${workout._id}`}>{workout.activity}</Link>
+            <p>{formatDate(workout.date)}</p>
+            <p className="meters">{workout.meters}m</p>
+            <p className="adjusted display-md">
+              {workout.meters === workout.adjusted
+                ? "-"
+                : `${workout.adjusted}m`}
+            </p>
+          </li>
+        ))}
       </ul>
     </section>
   );

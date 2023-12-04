@@ -1,21 +1,15 @@
-/* * {
-    outline: 1px dotted grey;
-} */
-
 /* login sections */
 #main-login {
     gap: .75rem;
 
     & section {
         width: 100%;
-
     }
 
     /* user stats */
 
     /* form */
     & .form-section {
-        grid-area: b;
 
         & #workout-form {
             display: grid;
@@ -24,7 +18,7 @@
 
             & h2,
             fieldset,
-            button {
+            c button {
                 grid-column: span 2;
 
             }
@@ -44,14 +38,14 @@
 
     /* list */
     & .list-section {
-        grid-area: c;
-        width: 100%;
-        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: hidden;
 
         & .list {
             gap: .5rem;
             overflow-y: scroll;
-            height: 100%;
+
             display: flex;
             flex-direction: column;
 
@@ -76,12 +70,12 @@
     }
 }
 
-/* user section */
+/* user section
 .user-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-area: a;
     position: sticky;
+    gap: .5rem;
 
     & h2 {
         grid-column: span 4;
@@ -93,42 +87,27 @@
         flex-direction: column;
         padding-left: .5rem;
     }
-}
+} */
 
-@media screen and (min-width: 768px) {
-    .workout {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
+/* @media screen and (min-width: 768px) {
+    #main-login {
+        & .list-section {
+            & .list {
+                & .workout {
+                    grid-template-columns: 3rem 7rem repeat(2, 1fr);
+                    gap: .5rem;
+                }
+            }
+        }
     }
+} */
 
-    /* .workout-meters {
-        text-align: end;
-        padding-right: 4rem;
-    } */
-}
+/* @media screen and (min-width: 1024px) {
 
-@media screen and (min-width: 1024px) {
-    /* .logged-in {
+    #main-login {
         display: grid;
+        grid-template-columns: max-content 1fr;
         align-items: flex-start;
-        grid-template-columns: auto 1fr;
-        grid-template-rows: 40vh auto;
-        grid-template-areas: 
-        "a c"
-        "b c";
-        overflow-y: hidden;
+
     }
-
-    .logged-in section {
-        height: auto;
-    } */
-
-    /* .workouts-section {
-        grid-row: span 2;
-        height: 100%;
-    } */
-
-    /* .form-section {
-        width: 40rem;
-    } */
-}
+} */

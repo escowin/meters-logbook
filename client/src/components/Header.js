@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
-import "../assets/styles/header.css";
 
 function Header() {
   const navLinks = [

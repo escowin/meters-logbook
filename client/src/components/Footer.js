@@ -1,5 +1,3 @@
-import "../assets/styles/footer.css";
-
 function Footer(date) {
   const repo = "https://github.com/escowin/meters-logbook";
 

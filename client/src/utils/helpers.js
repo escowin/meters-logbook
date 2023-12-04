@@ -59,7 +59,7 @@ export const updateCache = (cache, data, type) => {
     data: {
       me: {
         ...me,
-        workouts: [...me.workouts, addWorkout],
+        workouts: [addWorkout, ...me.workouts],
       },
     },
   });
