@@ -23,7 +23,7 @@
 
             }
 
-            & fieldset {
+            & #activity {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 gap: .5rem;
@@ -43,7 +43,7 @@
         overflow-y: hidden;
 
         & .list {
-            gap: .5rem;
+            gap: .75rem;
             overflow-y: scroll;
 
             display: flex;
@@ -53,16 +53,16 @@
                 position: sticky;
                 top: 0;
                 background-color: var(--dark-overlay);
-                border-left: 1px solid var(--light-text);
             }
 
             & .workout {
                 display: grid;
-                grid-template-columns: 3rem 8rem 4rem;
-                gap: .5rem 1rem;
-                padding: .25rem .75rem;
+                grid-template-columns: 3rem 6rem 4rem 1fr;
+                gap: .5rem;
+                padding: 0 .25rem;
 
-                & .meters {
+                & .meters,
+                .adjusted {
                     text-align: end;
                 }
             }
@@ -70,44 +70,54 @@
     }
 }
 
-/* user section
-.user-section {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    position: sticky;
-    gap: .5rem;
 
-    & h2 {
-        grid-column: span 4;
-
-    }
-
-    & p {
-        display: flex;
-        flex-direction: column;
-        padding-left: .5rem;
-    }
-} */
-
-/* @media screen and (min-width: 768px) {
-    #main-login {
-        & .list-section {
-            & .list {
-                & .workout {
-                    grid-template-columns: 3rem 7rem repeat(2, 1fr);
-                    gap: .5rem;
-                }
-            }
-        }
-    }
-} */
-
-/* @media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
 
     #main-login {
         display: grid;
-        grid-template-columns: max-content 1fr;
+        grid-template-columns: .5fr 1fr;
+        grid-template-areas: "a b";
         align-items: flex-start;
 
+        & section {
+            height: 100%;
+        }
+
+        & .form-section {
+            grid-area: a;
+
+            & #workout-form {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+
+                & #activity {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            & button {
+                grid-column: 1 / -1;
+            }
+        }
+
+        & .list-section {
+            grid-area: b;
+
+            & .list .workout {
+                grid-template-columns: 3rem repeat(3, 1fr);
+            }
+        }
     }
-} */
+}
+
+@media screen and (min-width: 1024px) {
+    #main-login {
+        grid-template-columns: .25fr 1fr;
+
+        & .list-section .list .workout {
+            grid-template-columns: 3rem repeat(3, 6rem) 1fr;
+            gap: 1rem;
+        }
+    }
+}

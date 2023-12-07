@@ -20,6 +20,14 @@ function WorkoutForm({ initialValues, doc, type }) {
   // State variables & functions
   const [formState, setFormState] = useState({});
 
+  const handleMinMax = () => {
+    console.log("clicking hides form")
+    console.log("clicking again shows form")
+    // hamburger style content display
+    // target form element, adding a `display: hide` style attribute to form if state is true.
+    // clicking button again will set state to false, removing/undoing the `display: hide`
+  }
+
   useEffect(() => {
     // filters 'profile' object based on the 'details' array
     const docFields = {};
@@ -117,6 +125,7 @@ function WorkoutForm({ initialValues, doc, type }) {
 
   return (
     <section className="form-section">
+      {/* <button className="expnd-btn" onClick={() => handleMinMax}>&#8230;</button> */}
       <form onSubmit={handleFormSubmit} id="workout-form">
         <h2>Add workout</h2>
         {fields.map((field, i) => displayField(field, i))}

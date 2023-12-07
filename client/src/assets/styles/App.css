@@ -16,7 +16,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: 1px dotted gray;
+  /* outline: 1px dotted gray; */
 }
 
 ::-webkit-scrollbar {
@@ -129,7 +129,6 @@ button {
   padding: .125rem;
   transition: 1s;
   background-color: var(--blue);
-  margin-top: .5rem;
   font-size: 1.25rem;
 
   &:active,
