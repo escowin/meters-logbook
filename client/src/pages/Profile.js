@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_STATS } from "../utils/queries";
 import Auth from "../utils/auth";
 
 // query/mutation note: re-request data from server not needed. apollo client aches query results, updates cache with every mutation
-function Profile() {
+function Profile({ setMain }) {
   const { username: userParam } = useParams();
 
   // adds variables to a `useQuery` hook to run queries with arguments
@@ -17,6 +18,8 @@ function Profile() {
   const user = data?.me || data?.user || {};
   const { username, ...stats } = user;
   console.log(stats);
+
+  useEffect(() => setMain("profile"), [setMain])
 
   // navigates user to `/profile` if username is the logged in user. compares jwt username value against userParam value
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -35,7 +38,7 @@ function Profile() {
   // UI | user stat object key-values are mapped to keep JSX DRY
   return (
     <>
-      <section>
+      <section id="user-stats">
         <h2>{username} stats</h2>
         {Object.entries(stats)
           .filter(([key]) => !key.startsWith("_"))

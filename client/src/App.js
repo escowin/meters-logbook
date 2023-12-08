@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   ApolloProvider, // special react component. provides data to all other components
   ApolloClient, // constructor function. initializes connection to graphqll api server
@@ -6,7 +7,6 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context"; // retrieves jwt everytime a graphql req is made
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // spa appears as mpa
-import Auth from "./utils/auth";
 import "./assets/styles/App.css";
 
 // pages
@@ -45,33 +45,27 @@ const client = new ApolloClient({
 
 function App() {
   const date = new Date().getFullYear();
-  const loggedIn = Auth.loggedIn();
-  // let currentRoute = window.location.pathname.replace('/', '')
-  // if (currentRoute === '' && loggedIn) {
-  //   currentRoute = "home-login"
-  // } else if (currentRoute === '') {
-  //   currentRoute = "home"
-  // }
-  // console.log(currentRoute)
-  // bug | className is only set on refresh. possible solution, useNavigate to track current route path might be a solution
+  const [main, setMain] = useState("");
+
 
   return (
     <ApolloProvider client={client}>
       {/* components for client-side routing */}
       <Router>
         <Header />
-        <main id={`${loggedIn ? "main-login" : "main"}`}>
+        <main id={`${main}-page`}>
+        {/* <main id={`${loggedIn ? "main-login" : "main"}`}> */}
           <Routes>
             {/* uses url parameters in React Router for dynamic page content */}
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home setMain={setMain} />} />
             <Route path="/profile">
-              <Route path=":username" element={<Profile />} />
-              <Route path="" element={<Profile />} />
+              <Route path=":username" element={<Profile setMain={setMain}/>} />
+              <Route path="" element={<Profile setMain={setMain} />} />
             </Route>
-            <Route path="/workout/:id" element={<Workout />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="*" element={<Page404 />} />
+            <Route path="/workout/:id" element={<Workout setMain={setMain} />} />
+            <Route path="/login" element={<Login setMain={setMain} />} />
+            <Route path="/signup" element={<Signup setMain={setMain} />} />
+            <Route path="*" element={<Page404 setMain={setMain} />} />
           </Routes>
         </main>
         <Footer date={date} />

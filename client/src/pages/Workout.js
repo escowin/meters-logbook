@@ -1,18 +1,19 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_WORKOUT } from "../utils/queries";
 import Auth from "../utils/auth";
 import "../assets/styles/workout.css"
 
-function Workout() {
+function Workout({ setMain }) {
   const loggedIn = Auth.loggedIn();
   const { id: workoutId } = useParams();
-
   const { loading, data } = useQuery(QUERY_WORKOUT, {
     variables: { id: workoutId },
   });
-
   const workout = data?.workout || {};
+
+  useEffect(() => setMain("workout"), [setMain])
 
   if (loading) {
     return <section>Loading...</section>;

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import "../assets/styles/login.css";
 
-function Login(props) {
+function Login({ setMain }) {
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [login, { error }] = useMutation(LOGIN_USER);
+  useEffect(() => setMain("login"), [setMain]);
 
   // updates state on form input changes
   const handleChange = (event) => {
@@ -27,13 +28,10 @@ function Login(props) {
       });
 
       // redirects to homepage after login
-      Auth.login(data.login.token)
+      Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
     }
-
-    // clears form values
-    // setFormState({ username: "", password: "" });
   };
 
   return (
