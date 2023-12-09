@@ -85,6 +85,7 @@ main {
   align-items: center;
   padding: .5rem;
   overflow-y: hidden;
+  gap: 1rem;
 }
 
 /* LEVEL II | SECTION, ARTICLE, FORMS */
@@ -155,11 +156,6 @@ a,
 .display-lg {
   display: none;
 }
-
-#user-stats {
-  white-space: pre-line;
-}
-
 
 @media screen and (min-width:768px) {
 

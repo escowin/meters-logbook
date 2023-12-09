@@ -4,13 +4,13 @@ export const QUERY_STATS = gql`
   {
     me {
       username
+      weeklyGoal
+      remaining
       dailyMeters
       weeklyMeters
       monthlyMeters
-      totalMeters
-      weeklyGoal
-      remaining
       weeklyBreakdown
+      totalMeters
     }
   }
 `;

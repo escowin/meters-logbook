@@ -1,0 +1,22 @@
+#profile-page {
+    white-space: pre-line;
+
+    & section {
+        width: 100%;
+    }
+
+    & #user-goals {
+        display: flex;
+        align-items: baseline;
+    }
+
+    & #user-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        & h2 {
+            grid-column: 1 / -1;
+            width: fit-content;
+        }
+    }
+}

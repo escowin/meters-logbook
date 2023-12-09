@@ -3,6 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_STATS } from "../utils/queries";
 import Auth from "../utils/auth";
+import "../assets/styles/profile.css"
 
 // query/mutation note: re-request data from server not needed. apollo client aches query results, updates cache with every mutation
 function Profile({ setMain }) {
@@ -16,8 +17,8 @@ function Profile({ setMain }) {
 
   // handles each type of the above response
   const user = data?.me || data?.user || {};
-  const { username, ...stats } = user;
-  console.log(stats);
+  const { username, weeklyGoal, remaining, ...stats } = user;
+  const goals = { weeklyGoal, remaining }
 
   useEffect(() => setMain("profile"), [setMain])
 
@@ -38,13 +39,25 @@ function Profile({ setMain }) {
   // UI | user stat object key-values are mapped to keep JSX DRY
   return (
     <>
+      <section id="user-goals">
+      <h2>{username} goals</h2>
+        {Object.entries(goals)
+          .filter(([key]) => !key.startsWith("_"))
+          .map(([key, value], i) => (
+            <article key={i} className="goals">
+              <p>{key}</p>
+              <p>{value}</p>
+            </article>
+          ))}
+      </section>
+
       <section id="user-stats">
-        <h2>{username} stats</h2>
+        <h2>meter stats</h2>
         {Object.entries(stats)
           .filter(([key]) => !key.startsWith("_"))
           .map(([key, value], i) => (
             <article key={i} className="stats">
-              <p>{key}</p>
+              <p>{key.replace("Meters", "")}</p>
               <p>{value}</p>
             </article>
           ))}
