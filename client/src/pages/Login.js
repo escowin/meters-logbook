@@ -39,20 +39,24 @@ function Login({ setMain }) {
       <form className="login-form" onSubmit={handleFormSubmit}>
         <h2 className="header">Login</h2>
 
-        <label htmlFor="username">username</label>
-        <input
-          name="username"
-          value={formState.username}
-          onChange={handleChange}
-        />
+        <label htmlFor="username">
+          username
+          <input
+            name="username"
+            value={formState.username}
+            onChange={handleChange}
+          />
+        </label>
 
-        <label htmlFor="password">password</label>
-        <input
-          name="password"
-          type="password"
-          value={formState.password}
-          onChange={handleChange}
-        />
+        <label htmlFor="password">
+          password
+          <input
+            name="password"
+            type="password"
+            value={formState.password}
+            onChange={handleChange}
+          />
+        </label>
 
         <button type="submit">submit</button>
       </form>

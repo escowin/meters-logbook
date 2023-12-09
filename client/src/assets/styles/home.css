@@ -83,6 +83,13 @@
             height: 100%;
         }
 
+        & .message {
+            grid-column: 1 / -1;
+            height: fit-content;
+            width: fit-content;
+            justify-self: center;
+        }
+
         & .form-section {
             grid-area: a;
 

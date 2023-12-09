@@ -26,7 +26,7 @@ function Home({ setMain }) {
           <WorkoutList workouts={workouts}/>
         </>
       ) : (
-        <section>log in to view contents</section>
+        <section className="message">log in to view contents</section>
       )}
     </>
   );
