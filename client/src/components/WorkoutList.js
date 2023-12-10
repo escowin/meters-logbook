@@ -20,7 +20,7 @@ function WorkoutList({ workouts }) {
           <h3 className="meters">meters</h3>
           <h3 className="adjusted">adjusted</h3>
           <h3 className="note display-lg">notes</h3>
-
+          <h3 className="note display-lg options">options</h3>
         </li>
         {workouts.map((workout, i) => (
           <li key={i} className="workout item">
@@ -33,6 +33,20 @@ function WorkoutList({ workouts }) {
                 : `${workout.adjusted}m`}
             </p>
             <p className="note display-lg">{workout.notes}</p>
+            <div className="display-lg options">
+              <button
+                className="option-btn edit"
+                onClick={() => console.log("clicked edit")}
+              >
+                edit
+              </button>
+              <button
+                className="option-btn delete"
+                onClick={() => console.log("clicked delete")}
+              >
+                delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>

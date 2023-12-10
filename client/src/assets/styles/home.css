@@ -33,6 +33,10 @@
             & label[for="note"] {
                 grid-column: 1 / -1;
             }
+
+            & button {
+                color: var(--white);
+            }
         }
     }
 
@@ -123,8 +127,21 @@
         grid-template-columns: .25fr 1fr;
 
         & .list-section .list .workout {
-            grid-template-columns: 3rem repeat(3, 6rem) 1fr;
+            grid-template-columns: 3rem repeat(3, 6rem) 1fr auto;
             gap: 1rem;
+
+            & .options {
+                justify-content: center;
+                display: flex;
+                gap: 1rem;
+                min-width: 10rem;
+            }
+
+            & .option-btn {
+                background-color: transparent;
+                padding: 0 .5rem;
+                border-radius: 1rem;
+            }
         }
     }
 }
