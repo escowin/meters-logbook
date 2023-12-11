@@ -31,11 +31,6 @@
   margin: .25rem;
 }
 
-:hover::-webkit-scrollbar-thumb {
-  background-color: var(--white);
-  box-shadow: 0 0 1rem var(--red);
-}
-
 #root {
   display: flex;
   flex-direction: column;
