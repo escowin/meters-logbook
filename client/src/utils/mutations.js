@@ -25,8 +25,18 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_WORKOUT = gql`
-  mutation addWorkout($activity: String!, $date: String!, $meters: Int!, $notes: String) {
-    addWorkout(activity: $activity, meters: $meters, date: $date, notes: $notes) {
+  mutation addWorkout(
+    $activity: String!
+    $date: String!
+    $meters: Int!
+    $notes: String
+  ) {
+    addWorkout(
+      activity: $activity
+      meters: $meters
+      date: $date
+      notes: $notes
+    ) {
       _id
       activity
       date
@@ -37,19 +47,3 @@ export const ADD_WORKOUT = gql`
     }
   }
 `;
-
-// to-do | write into corresponding server-side schemas
-export const ADD_CREWMATE = gql`
-  mutation addCrewmate($id: ID!) {
-    addCrewmate(crewmateId: $id) {
-      _id
-      username
-      crew
-      crewmate {
-        _id
-        username
-      }
-    }
-  }
-`;
-

@@ -1,5 +1,6 @@
-import { ADD_WORKOUT } from "./mutations";
+import { ADD_WORKOUT, ADD_USER, LOGIN_USER } from "./mutations";
 import { QUERY_ME_BASIC } from "./queries";
+import Auth from "./auth";
 
 export function formatDate(date) {
   return date.replace(/-/g, ".");
@@ -22,6 +23,11 @@ export const form = {
     { name: "username", type: "text", required: true },
     { name: "password", type: "password", required: true },
   ],
+  signup: [
+    { name: "username", type: "text", required: true },
+    { name: "email", type: "email", required: true },
+    { name: "password", type: "password", required: true },
+  ],
 };
 
 export const docMutation = (doc, type) => {
@@ -30,6 +36,16 @@ export const docMutation = (doc, type) => {
       switch (type) {
         case "add":
           return ADD_WORKOUT;
+        default:
+          console.error(`invalid mutation: ${doc}-${type}`);
+      }
+      break;
+    case "user":
+      switch (type) {
+        case "login":
+          return LOGIN_USER;
+        case "signup":
+          return ADD_USER;
         default:
           console.error(`invalid mutation: ${doc}-${type}`);
       }
@@ -63,4 +79,15 @@ export const updateCache = (cache, data, type) => {
       },
     },
   });
+};
+
+// Carries out conditional action following a succesful mutation from the client side
+export const postMutation = (type, navigate, setEditSelected, data) => {
+  if (type === "login" || type === "sign-up") {
+    type === "login"
+      ? Auth.login(data.login.token)
+      : Auth.login(data.addUser.token);
+  } else {
+    // type === "add" ? navigate("/") : setEditSelected(false);
+  }
 };
