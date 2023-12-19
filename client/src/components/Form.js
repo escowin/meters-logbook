@@ -7,33 +7,45 @@ import {
   form,
   //   format,
   //   updateCache,
-    postMutation,
+  postMutation,
+  updateCache,
 } from "../utils/helpers";
 
 function Form(props) {
   const navigate = useNavigate();
   const { initialValues, setEditSelected, doc, type, className } = props;
   // Conditionally handling to account for unique mutations
-  const fields = form[type];
+  const fields =
+    type === "login" || type === "sign-up" ? form[type] : form[doc];
 
   // Server-related variables
   // - Variable is a dynamically defined GraphQL schema object
   const [document, { error }] = useMutation(docMutation(doc, type), {
     // Updates client-side cache to reflect changes to server side data
     update(cache, { data }) {
-      console.log(`${doc}, ${type}`);
-      //   const mutationResult = determineMutationResult(doc, type, data);
-      //   if (doc === "job") {
-      //     const virtuals = fields.find((item) => item.name === "status").radios;
-      //     return updateCache.me(cache, mutationResult, virtuals);
-      //   } else {
-      //     return updateCache.me(cache, mutationResult);
-      //   }
+      try {
+        if (doc === "workout") {
+          console.log(`${doc}, ${type}`);
+          updateCache(cache, data, type);
+        } else {
+          console.log(`${doc}, ${type}`);
+        }
+      } catch (err) {
+        console.error(err);
+      }
     },
   });
 
   // sets up form state management
   const [formState, setFormState] = useState({});
+
+  // const handleMinMax = () => {
+  //   console.log("clicking hides form");
+  //   console.log("clicking again shows form");
+  //   // hamburger style content display
+  //   // target form element, adding a `display: hide` style attribute to form if state is true.
+  //   // clicking button again will set state to false, removing/undoing the `display: hide`
+  // };
 
   // populates form state with profile data when component mounts
   useEffect(() => {
@@ -50,7 +62,11 @@ function Form(props) {
           .split("/")
           .join("/");
         docFields[field.name] = initialValues[field.name] || today;
-      } else if (field.name === "username" || field.name === "password" || field.name === "email") {
+      } else if (
+        field.name === "username" ||
+        field.name === "password" ||
+        field.name === "email"
+      ) {
         docFields[field.name] = "";
       } else {
         docFields[field.name] = initialValues[field.name] || "";
@@ -72,6 +88,12 @@ function Form(props) {
 
     // Carries out client-server communication
     try {
+      // Converts string to integer for GraphQL mutation acceptance
+      if (formState.meters) {
+        formState.meters = parseInt(formState.meters);
+      }
+
+      console.log(formState);
       // Sets the object to mirror the GraphQL schema
       const mutation = {
         ...formState,
@@ -80,15 +102,15 @@ function Form(props) {
 
       // Conditionally determines mutation sequence
       if (type === "login" || type === "sign-up") {
-          const { data } = await document({ variables: mutation });
-          postMutation(type, navigate, setEditSelected, data);
+        const { data } = await document({ variables: mutation });
+        postMutation(type, navigate, setEditSelected, data);
       } else {
-        //   await document({ variables: mutation });
+        await document({ variables: mutation });
         //   postMutation(type, navigate, setEditSelected);
       }
     } catch (err) {
       // Error handling
-      console.error(err);
+      console.error(`mutation failed. original error: ${err}`);
     }
   };
 
@@ -120,7 +142,7 @@ function Form(props) {
         );
       default:
         return (
-          <label key={i} htmlFor={field.name}>
+          <label key={i} htmlFor={field.name} className="label">
             {field.name}
             <input
               type={field.type}
@@ -140,10 +162,7 @@ function Form(props) {
 
   // Dynamically renders scalable UI elements & attributes
   return (
-    <section
-      className={"form-section"}
-      id={`${type}-${doc}-section`}
-    >
+    <section className={"form-section"} id={`${type}-${doc}-section`}>
       <form
         className={`${doc}-form ${className}`}
         id={`${type}-${doc}`}

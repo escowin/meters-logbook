@@ -9,34 +9,31 @@
     /* user stats */
 
     /* form */
-    & .form-section {
+    & .form-section .workout-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .25rem;
 
-        & #workout-form {
+        & h2,
+        fieldset,
+        button {
+            grid-column: span 2;
+
+        }
+
+        & #activity {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: .25rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: .5rem;
+            padding: 0 .5rem .25rem .5rem;
+        }
 
-            & h2,
-            fieldset,
-            c button {
-                grid-column: span 2;
+        & label[for="note"] {
+            grid-column: 1 / -1;
+        }
 
-            }
-
-            & #activity {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: .5rem;
-                padding: 0 .5rem .25rem .5rem;
-            }
-
-            & label[for="note"] {
-                grid-column: 1 / -1;
-            }
-
-            & button {
-                color: var(--white);
-            }
+        & button {
+            color: var(--white);
         }
     }
 
@@ -97,7 +94,7 @@
         & .form-section {
             grid-area: a;
 
-            & #workout-form {
+            & .workout-form {
                 display: flex;
                 flex-direction: column;
                 gap: .5rem;

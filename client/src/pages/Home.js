@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME_BASIC } from "../utils/queries";
 import Auth from "../utils/auth";
 import WorkoutList from "../components/WorkoutList";
-import WorkoutForm from "../components/WorkoutForm";
+import Form from "../components/Form";
 import "../assets/styles/home.css";
 
 function Home({ setMain }) {
@@ -22,7 +22,7 @@ function Home({ setMain }) {
     <>
       {loggedIn && user?.username ? (
         <>
-          <WorkoutForm initialValues={""} doc={"workout"} type={"add"}/>
+          <Form initialValues={""} doc={"workout"} type={"add"} className={"add-form"}/>
           <WorkoutList workouts={workouts}/>
         </>
       ) : (
