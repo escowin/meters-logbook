@@ -38,7 +38,7 @@ function WorkoutList({ workouts }) {
             <p className="note display-lg">{workout.notes}</p>
             <div className="display-lg options">
               {options.map((option, i) => (
-                <Options key={i} type={option} />
+                <Options key={i} type={option} doc={"workout"} _id={workout._id}/>
               ))}
             </div>
           </li>
