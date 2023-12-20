@@ -36,6 +36,10 @@ export const docMutation = (doc, type) => {
       switch (type) {
         case "add":
           return ADD_WORKOUT;
+        // case "edit":
+        //   return EDIT_WORKOUT;
+        // case "delete":
+        //   return DELETE_WORKOUT;
         default:
           console.error(`invalid mutation: ${doc}-${type}`);
       }

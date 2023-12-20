@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { formatDate } from "../utils/helpers";
+import Options from "./Options";
 
 function WorkoutList({ workouts }) {
+  const options = ["edit", "delete"];
+
   if (!workouts.length) {
     return (
-      <section>
+      <section className="list-section">
         <p>Enter a workout</p>
       </section>
     );
@@ -34,18 +37,9 @@ function WorkoutList({ workouts }) {
             </p>
             <p className="note display-lg">{workout.notes}</p>
             <div className="display-lg options">
-              <button
-                className="option-btn edit"
-                onClick={() => console.log("clicked edit")}
-              >
-                edit
-              </button>
-              <button
-                className="option-btn delete"
-                onClick={() => console.log("clicked delete")}
-              >
-                delete
-              </button>
+              {options.map((option, i) => (
+                <Options key={i} type={option} />
+              ))}
             </div>
           </li>
         ))}
