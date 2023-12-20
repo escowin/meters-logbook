@@ -1,4 +1,4 @@
-import { ADD_WORKOUT, ADD_USER, LOGIN_USER } from "./mutations";
+import { USER, WORKOUT } from "./mutations";
 import { QUERY_ME_BASIC } from "./queries";
 import Auth from "./auth";
 
@@ -35,11 +35,11 @@ export const docMutation = (doc, type) => {
     case "workout":
       switch (type) {
         case "add":
-          return ADD_WORKOUT;
+          return WORKOUT.ADD_WORKOUT;
+        case "delete":
+          return WORKOUT.DELETE_WORKOUT;
         // case "edit":
         //   return EDIT_WORKOUT;
-        // case "delete":
-        //   return DELETE_WORKOUT;
         default:
           console.error(`invalid mutation: ${doc}-${type}`);
       }
@@ -47,9 +47,11 @@ export const docMutation = (doc, type) => {
     case "user":
       switch (type) {
         case "login":
-          return LOGIN_USER;
+          return USER.LOGIN_USER;
         case "signup":
-          return ADD_USER;
+          return USER.ADD_USER;
+        case "edit":
+          return USER.EDIT_USER;
         default:
           console.error(`invalid mutation: ${doc}-${type}`);
       }
