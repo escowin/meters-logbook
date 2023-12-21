@@ -61,30 +61,52 @@ export const docMutation = (doc, type) => {
   }
 };
 
-export const updateCache = (cache, data, type) => {
-  if (type === "login") {
-    return;
-  }
-
-  let { addWorkout } = data;
-
-  // Matches server side virtual calculation
-  if (addWorkout.activity === "erg" || addWorkout.activity === "row") {
-    // Makes a deep copy of addWorkout to avoid modifying the original object
-    addWorkout = JSON.parse(JSON.stringify(addWorkout));
-    addWorkout.adjusted = addWorkout.meters;
-  }
-
+export const updateCache = (cache, data, type, _id) => {
+  // reads data object from cache
   const { me } = cache.readQuery({ query: QUERY_ME_BASIC });
-  cache.writeQuery({
-    query: QUERY_ME_BASIC,
-    data: {
-      me: {
-        ...me,
-        workouts: [addWorkout, ...me.workouts],
-      },
-    },
-  });
+
+  switch (type) {
+    case "add":
+      let { addWorkout } = data;
+
+      // Matches server side virtual calculation
+      if (addWorkout.activity === "erg" || addWorkout.activity === "row") {
+        // Makes a deep copy of addWorkout to avoid modifying the original object
+        addWorkout = JSON.parse(JSON.stringify(addWorkout));
+        addWorkout.adjusted = addWorkout.meters;
+      }
+
+      cache.writeQuery({
+        query: QUERY_ME_BASIC,
+        data: {
+          me: {
+            ...me,
+            workouts: [addWorkout, ...me.workouts],
+          },
+        },
+      });
+      break;
+    case "edit":
+      console.log("edit cache tbd");
+      break;
+    case "delete":
+      // removes deleted job from job app array
+      const updatedWorkouts = me.workouts.filter((workout) => workout._id !== _id);
+      // writes updated query_me data to cache
+      cache.writeQuery({
+        query: QUERY_ME_BASIC,
+        data: {
+          me: {
+            ...me,
+            workouts: updatedWorkouts,
+            // implement logic to match server-side virtuals
+          },
+        },
+      });
+      break;
+    default:
+      return;
+  }
 };
 
 // Carries out conditional action following a succesful mutation from the client side
