@@ -1,15 +1,20 @@
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { docMutation, updateCache } from "../utils/helpers";
 
 function Options({ doc, type, _id }) {
   //   const { id: _id } = useParams();
-  console.log(_id);
-//   const [mutation] = useMutation(docMutation(doc, type), {
-//     update(cache, { data }) {
-//       console.log("cache update tbd");
-//     },
-//   });
+  // console.log(_id);
+  const [document, {error}] = useMutation(docMutation(doc, type), {
+    update(cache, { data }) {
+      try {
+        console.log(cache)
+        console.log(data)
+      } catch (err) {
+        console.error(err)
+      }
+    },
+  });
 
   // const handleEdit = () => setEditSelected(true);
   const handleClick = async (button) => {

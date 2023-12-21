@@ -39,8 +39,7 @@ export const docMutation = (doc, type) => {
         case "delete":
           return WORKOUT.DELETE_WORKOUT;
         case "edit":
-          return console.log("edit schema tbd")
-        //   return EDIT_WORKOUT;
+          return WORKOUT.EDIT_WORKOUT;
         default:
           console.error(`invalid mutation: ${doc}-${type}`);
       }

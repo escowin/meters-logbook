@@ -143,6 +143,24 @@ const resolvers = {
         throw new Error(`Failed to edit user. Original error: ${err.message}`);
       }
     },
+
+    editWorkout: async (parent, { _id, ...data }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("login required");
+      }
+
+      try {
+        const result = await Workout.findByIdAndUpdate(
+          _id,
+          { $set: data },
+          { new: true }
+        );
+
+        return result;
+      } catch (err) {
+        throw new Error(`Failed to edit workout. Original error: ${err.message}`);
+      }
+    },
   },
 };
 

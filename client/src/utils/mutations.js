@@ -66,5 +66,30 @@ export const WORKOUT = {
     }
   `,
 
-  // EDIT_WORKOUT: gql``
+  EDIT_WORKOUT: gql`
+    mutation EditWorkout(
+      $id: ID!
+      $activity: String
+      $meters: Int
+      $date: String
+      $notes: String
+    ) {
+      editWorkout(
+        _id: $id
+        activity: $activity
+        meters: $meters
+        date: $date
+        notes: $notes
+      ) {
+        _id
+        activity
+        adjusted
+        createdAt
+        date
+        meters
+        notes
+        username
+      }
+    }
+  `,
 };

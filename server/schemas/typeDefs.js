@@ -42,6 +42,7 @@ const typeDefs = gql`
     addWorkout(activity: String!, meters: Int!, date: String!, notes: String): Workout
     deleteWorkout(_id: ID!): Workout
     editUser(_id: ID!, weeklyGoal: Int): User
+    editWorkout(_id: ID!, activity: String, meters: Int, date: String, notes: String): Workout
   }
 
   type Auth {
