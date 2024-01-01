@@ -5,7 +5,13 @@ import Options from "./Options";
 
 function WorkoutList({ workouts }) {
   const options = ["edit", "delete"];
-  const [editSelected, setEditSelected] = useState(false);
+  const [editStates, setEditStates] = useState(workouts.map(() => false));
+
+  const handleEditClick = (index) => {
+    const newEditStates = [...editStates];
+    newEditStates[index] = !newEditStates[index];
+    setEditStates(newEditStates);
+  };
 
   if (!workouts.length) {
     return (
@@ -15,7 +21,6 @@ function WorkoutList({ workouts }) {
     );
   }
 
-  // bug: edit state affects all workouts
   return (
     <section className="list-section">
       <h2>Logbook</h2>
@@ -30,7 +35,7 @@ function WorkoutList({ workouts }) {
         </li>
         {workouts.map((workout, i) => (
           <li key={i} className="workout item">
-            {!editSelected ? (
+            {!editStates[i] ? (
               <>
                 <Link to={`/workout/${workout._id}`}>{workout.activity}</Link>
                 <p>{formatDate(workout.date)}</p>
@@ -43,16 +48,16 @@ function WorkoutList({ workouts }) {
                 <p className="note display-lg">{workout.notes}</p>
               </>
             ) : (
-              console.log(editSelected)
+              console.log(editStates[i])
             )}
             <div className="display-lg options">
-              {options.map((option, i) => (
+              {options.map((option, j) => (
                 <Options
-                  key={i}
+                  key={j}
                   type={option}
                   doc={"workout"}
                   _id={workout._id}
-                  setEditSelected={setEditSelected}
+                  handleEditClick={() => handleEditClick(i)}
                 />
               ))}
             </div>
