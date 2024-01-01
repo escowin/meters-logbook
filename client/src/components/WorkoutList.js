@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { formatDate } from "../utils/helpers";
 import Options from "./Options";
 
 function WorkoutList({ workouts }) {
   const options = ["edit", "delete"];
+  const [editSelected, setEditSelected] = useState(false);
 
   if (!workouts.length) {
     return (
@@ -13,6 +15,7 @@ function WorkoutList({ workouts }) {
     );
   }
 
+  // bug: edit state affects all workouts
   return (
     <section className="list-section">
       <h2>Logbook</h2>
@@ -27,18 +30,30 @@ function WorkoutList({ workouts }) {
         </li>
         {workouts.map((workout, i) => (
           <li key={i} className="workout item">
-            <Link to={`/workout/${workout._id}`}>{workout.activity}</Link>
-            <p>{formatDate(workout.date)}</p>
-            <p className="meters">{workout.meters}m</p>
-            <p className="adjusted">
-              {workout.meters === workout.adjusted
-                ? ""
-                : `${workout.adjusted}m`}
-            </p>
-            <p className="note display-lg">{workout.notes}</p>
+            {!editSelected ? (
+              <>
+                <Link to={`/workout/${workout._id}`}>{workout.activity}</Link>
+                <p>{formatDate(workout.date)}</p>
+                <p className="meters">{workout.meters}m</p>
+                <p className="adjusted">
+                  {workout.meters === workout.adjusted
+                    ? ""
+                    : `${workout.adjusted}m`}
+                </p>
+                <p className="note display-lg">{workout.notes}</p>
+              </>
+            ) : (
+              console.log(editSelected)
+            )}
             <div className="display-lg options">
               {options.map((option, i) => (
-                <Options key={i} type={option} doc={"workout"} _id={workout._id}/>
+                <Options
+                  key={i}
+                  type={option}
+                  doc={"workout"}
+                  _id={workout._id}
+                  setEditSelected={setEditSelected}
+                />
               ))}
             </div>
           </li>

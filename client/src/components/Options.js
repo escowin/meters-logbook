@@ -2,7 +2,7 @@
 import { useMutation } from "@apollo/client";
 import { docMutation, updateCache } from "../utils/helpers";
 
-function Options({ doc, type, _id }) {
+function Options({ doc, type, _id, setEditSelected }) {
   const [document, { error }] = useMutation(docMutation(doc, type), {
     update(cache, { data }) {
       try {
@@ -22,6 +22,7 @@ function Options({ doc, type, _id }) {
         await document({ variables: { id: _id } });
       } else if (mutation === "edit") {
         console.log(mutation + " option tbd");
+        setEditSelected(true)
       }
     } catch (err) {
       console.error(err);
