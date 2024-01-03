@@ -14,6 +14,7 @@ import {
 function Form(props) {
   const navigate = useNavigate();
   const { initialValues, setEditSelected, doc, type, className } = props;
+  console.log(initialValues)
   // Conditionally handling to account for unique mutations
   const fields =
     type === "login" || type === "sign-up" ? form[type] : form[doc];

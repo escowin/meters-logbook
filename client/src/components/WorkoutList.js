@@ -22,7 +22,6 @@ function WorkoutList({ workouts }) {
     );
   }
 
-  // bug | clicking edit will throw console error when loading form
   return (
     <section className="list-section">
       <h2>Logbook</h2>
@@ -51,7 +50,7 @@ function WorkoutList({ workouts }) {
               </>
             ) : (
               <Form
-                initialValue={""}
+                initialValues={workout}
                 setEditSelected={setEditStates}
                 doc={"workout"}
                 type={"edit"}
