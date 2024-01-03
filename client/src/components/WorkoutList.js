@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { formatDate } from "../utils/helpers";
 import Options from "./Options";
+import Form from "./Form";
 
 function WorkoutList({ workouts }) {
   const options = ["edit", "delete"];
@@ -21,6 +22,7 @@ function WorkoutList({ workouts }) {
     );
   }
 
+  // bug | clicking edit will throw console error when loading form
   return (
     <section className="list-section">
       <h2>Logbook</h2>
@@ -48,7 +50,13 @@ function WorkoutList({ workouts }) {
                 <p className="note display-lg">{workout.notes}</p>
               </>
             ) : (
-              console.log(editStates[i])
+              <Form
+                initialValue={""}
+                setEditSelected={setEditStates}
+                doc={"workout"}
+                type={"edit"}
+                className={"edit-form"}
+              />
             )}
             <div className="display-lg options">
               {options.map((option, j) => (

@@ -65,7 +65,8 @@ function Form(props) {
       } else if (
         field.name === "username" ||
         field.name === "password" ||
-        field.name === "email"
+        field.name === "email" ||
+        field.name === "activity"
       ) {
         docFields[field.name] = "";
       } else {

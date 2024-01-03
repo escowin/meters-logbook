@@ -16,13 +16,10 @@ function Options({ doc, type, _id, handleEditClick }) {
 
   const handleClick = async (mutation) => {
     try {
-      console.log(`clicked ${doc} ${_id}`);
-
       if (mutation === "delete") {
         await document({ variables: { id: _id } });
       } else if (mutation === "edit") {
-        console.log(mutation + " option tbd");
-        handleEditClick(true)
+        handleEditClick(true);
       }
     } catch (err) {
       console.error(err);
