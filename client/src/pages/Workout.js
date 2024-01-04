@@ -13,8 +13,6 @@ function Workout({ setMain }) {
 
   useEffect(() => setMain("workout"), [setMain]);
 
-  // to-do: implement edit & delete options
-
   if (loading) {
     return <section>Loading...</section>;
   }

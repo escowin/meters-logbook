@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import {
   //   determineMutationResult,
@@ -12,9 +11,7 @@ import {
 } from "../utils/helpers";
 
 function Form(props) {
-  const navigate = useNavigate();
-  const { initialValues, setEditSelected, doc, type, className } = props;
-  console.log(initialValues)
+  const { initialValues, setEditStates, doc, type, className, index } = props;
   // Conditionally handling to account for unique mutations
   const fields =
     type === "login" || type === "sign-up" ? form[type] : form[doc];
@@ -66,8 +63,7 @@ function Form(props) {
       } else if (
         field.name === "username" ||
         field.name === "password" ||
-        field.name === "email" ||
-        field.name === "activity"
+        field.name === "email" 
       ) {
         docFields[field.name] = "";
       } else {
@@ -95,7 +91,6 @@ function Form(props) {
         formState.meters = parseInt(formState.meters);
       }
 
-      console.log(formState);
       // Sets the object to mirror the GraphQL schema
       const mutation = {
         ...formState,
@@ -103,12 +98,11 @@ function Form(props) {
       };
 
       // Conditionally determines mutation sequence
-      if (type === "login" || type === "sign-up") {
+      if (type === "login" || type === "sign-up" || type === "edit") {
         const { data } = await document({ variables: mutation });
-        postMutation(type, navigate, setEditSelected, data);
+        postMutation(type, setEditStates, data, index);
       } else {
         await document({ variables: mutation });
-        //   postMutation(type, navigate, setEditSelected);
       }
     } catch (err) {
       // Error handling
@@ -164,7 +158,7 @@ function Form(props) {
 
   // Dynamically renders scalable UI elements & attributes
   return (
-    <section className={"form-section"} id={`${type}-${doc}-section`}>
+    // <section className={"form-section"} id={`${type}-${doc}-section`}>
       <form
         className={`${doc}-form ${className}`}
         id={`${type}-${doc}`}
@@ -175,7 +169,7 @@ function Form(props) {
         <button type="submit">submit</button>
         {error && <span>{type} failed</span>}
       </form>
-    </section>
+    // {/* </section> */}
   );
 }
 

@@ -12,7 +12,7 @@ function Home({ setMain }) {
   const user = data?.me || {};
   const workouts = user?.workouts || [];
 
-  useEffect(() => setMain("home"), [setMain])
+  useEffect(() => setMain("home"), [setMain]);
 
   if (loading) {
     <section>Loading...</section>;
@@ -22,8 +22,15 @@ function Home({ setMain }) {
     <>
       {loggedIn && user?.username ? (
         <>
-          <Form initialValues={""} doc={"workout"} type={"add"} className={"add-form"}/>
-          <WorkoutList workouts={workouts}/>
+          <section className={"form-section"} id={"add-workout-section"}>
+            <Form
+              initialValues={""}
+              doc={"workout"}
+              type={"add"}
+              className={"add-form"}
+            />
+          </section>
+          <WorkoutList workouts={workouts} />
         </>
       ) : (
         <section className="message">log in to view contents</section>

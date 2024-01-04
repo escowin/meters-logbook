@@ -115,6 +115,7 @@
             & .list .workout {
                 grid-template-columns: 3rem repeat(3, 1fr);
             }
+
         }
     }
 }
@@ -138,6 +139,22 @@
                 background-color: transparent;
                 padding: 0 .5rem;
                 border-radius: 1rem;
+            }
+
+            & form {
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: 5rem repeat(2, 6rem) 1fr auto;
+                gap: 1rem;
+                align-items: flex-end;
+
+                & h2 {
+                    display: none;
+                }
+
+                & fieldset, button {
+                    padding: 0 .5rem;
+                }
             }
         }
     }

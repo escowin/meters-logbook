@@ -7,6 +7,7 @@ import Form from "./Form";
 function WorkoutList({ workouts }) {
   const options = ["edit", "delete"];
   const [editStates, setEditStates] = useState(workouts.map(() => false));
+  console.log(editStates)
 
   const handleEditClick = (index) => {
     const newEditStates = [...editStates];
@@ -62,10 +63,11 @@ function WorkoutList({ workouts }) {
             ) : (
               <Form
                 initialValues={workout}
-                setEditSelected={setEditStates}
+                setEditStates={setEditStates}
                 doc={"workout"}
                 type={"edit"}
                 className={"edit-form"}
+                index={i}
               />
             )}
           </li>

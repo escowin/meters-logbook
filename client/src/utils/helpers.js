@@ -91,7 +91,9 @@ export const updateCache = (cache, data, type, _id) => {
       break;
     case "delete":
       // removes deleted job from job app array
-      const updatedWorkouts = me.workouts.filter((workout) => workout._id !== _id);
+      const updatedWorkouts = me.workouts.filter(
+        (workout) => workout._id !== _id
+      );
       // writes updated query_me data to cache
       cache.writeQuery({
         query: QUERY_ME_BASIC,
@@ -110,12 +112,19 @@ export const updateCache = (cache, data, type, _id) => {
 };
 
 // Carries out conditional action following a succesful mutation from the client side
-export const postMutation = (type, navigate, setEditSelected, data) => {
+export const postMutation = (type, setEditStates, data, index) => {
   if (type === "login" || type === "sign-up") {
     type === "login"
       ? Auth.login(data.login.token)
       : Auth.login(data.addUser.token);
+  } else if (type === "edit") {
+    // Updates a specific item in the state array using the state-setting function provided by useState.
+    setEditStates((prevEditStates) => {
+      const newEditStates = [...prevEditStates];
+      newEditStates[index] = !newEditStates[index];
+      return newEditStates;
+    });
   } else {
-    // type === "add" ? navigate("/") : setEditSelected(false);
+    return;
   }
 };
