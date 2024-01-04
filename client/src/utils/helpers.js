@@ -113,18 +113,23 @@ export const updateCache = (cache, data, type, _id) => {
 
 // Carries out conditional action following a succesful mutation from the client side
 export const postMutation = (type, setEditStates, data, index) => {
-  if (type === "login" || type === "sign-up") {
-    type === "login"
-      ? Auth.login(data.login.token)
-      : Auth.login(data.addUser.token);
-  } else if (type === "edit") {
-    // Updates a specific item in the state array using the state-setting function provided by useState.
-    setEditStates((prevEditStates) => {
-      const newEditStates = [...prevEditStates];
-      newEditStates[index] = !newEditStates[index];
-      return newEditStates;
-    });
-  } else {
-    return;
+  switch (type) {
+    case "login":
+      Auth.login(data.login.token);
+      break;
+    case "sign-up":
+      Auth.login(data.addUser.token);
+      break;
+    case "edit":
+      // Updates a specific item in the state array using the state-setting function provided by useState.
+      setEditStates((prevEditStates) => {
+        const newEditStates = [...prevEditStates];
+        newEditStates[index] = !newEditStates[index];
+        return newEditStates;
+      });
+      break;
+    default:
+      console.log(type + ": post mutation tbd");
+      return;
   }
 };

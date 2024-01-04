@@ -63,7 +63,7 @@ function Form(props) {
       } else if (
         field.name === "username" ||
         field.name === "password" ||
-        field.name === "email" 
+        field.name === "email"
       ) {
         docFields[field.name] = "";
       } else {
@@ -98,11 +98,9 @@ function Form(props) {
       };
 
       // Conditionally determines mutation sequence
-      if (type === "login" || type === "sign-up" || type === "edit") {
-        const { data } = await document({ variables: mutation });
+      const { data } = await document({ variables: mutation });
+      if (type !== "add") {
         postMutation(type, setEditStates, data, index);
-      } else {
-        await document({ variables: mutation });
       }
     } catch (err) {
       // Error handling
@@ -159,16 +157,16 @@ function Form(props) {
   // Dynamically renders scalable UI elements & attributes
   return (
     // <section className={"form-section"} id={`${type}-${doc}-section`}>
-      <form
-        className={`${doc}-form ${className}`}
-        id={`${type}-${doc}`}
-        onSubmit={handleFormSubmit}
-      >
-        <h2>{type}</h2>
-        {fields.map((field, i) => displayField(field, i))}
-        <button type="submit">submit</button>
-        {error && <span>{type} failed</span>}
-      </form>
+    <form
+      className={`${doc}-form ${className}`}
+      id={`${type}-${doc}`}
+      onSubmit={handleFormSubmit}
+    >
+      <h2>{type}</h2>
+      {fields.map((field, i) => displayField(field, i))}
+      <button type="submit">submit</button>
+      {error && <span>{type} failed</span>}
+    </form>
     // {/* </section> */}
   );
 }
