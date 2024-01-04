@@ -47,6 +47,17 @@ function WorkoutList({ workouts }) {
                     : `${workout.adjusted}m`}
                 </p>
                 <p className="note display-lg">{workout.notes}</p>
+                <div className="display-lg options">
+                  {options.map((option, j) => (
+                    <Options
+                      key={j}
+                      type={option}
+                      doc={"workout"}
+                      _id={workout._id}
+                      handleEditClick={() => handleEditClick(i)}
+                    />
+                  ))}
+                </div>{" "}
               </>
             ) : (
               <Form
@@ -57,17 +68,6 @@ function WorkoutList({ workouts }) {
                 className={"edit-form"}
               />
             )}
-            <div className="display-lg options">
-              {options.map((option, j) => (
-                <Options
-                  key={j}
-                  type={option}
-                  doc={"workout"}
-                  _id={workout._id}
-                  handleEditClick={() => handleEditClick(i)}
-                />
-              ))}
-            </div>
           </li>
         ))}
       </ul>

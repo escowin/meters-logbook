@@ -17,7 +17,7 @@ export const form = {
     },
     { name: "date", type: "date", required: true },
     { name: "meters", type: "number", required: true, max: 9999 },
-    { name: "note", type: "text", max: 180, required: false },
+    { name: "notes", type: "text", max: 180, required: false },
   ],
   login: [
     { name: "username", type: "text", required: true },
