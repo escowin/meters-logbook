@@ -97,13 +97,13 @@ function Form(props) {
         ...(type === "edit" ? { id: initialValues._id } : {}),
       };
 
-      // Conditionally determines mutation sequence
       const { data } = await document({ variables: mutation });
+
+      // Conditionally determines post-mutation sequence
       if (type !== "add") {
         postMutation(type, setEditStates, data, index);
       }
     } catch (err) {
-      // Error handling
       console.error(`mutation failed. original error: ${err}`);
     }
   };
@@ -116,13 +116,10 @@ function Form(props) {
           <fieldset className="wrapper" id={field.name} key={i}>
             <legend>{field.name}</legend>
             {field.radios.map((radio, j) => (
-              <label
-                key={j}
-                htmlFor={radio === "company" ? `${radio}-r` : radio}
-              >
+              <label key={j} htmlFor={radio}>
                 <input
                   type={field.type}
-                  id={radio === "company" ? `${radio}-r` : radio}
+                  id={radio}
                   name={field.name}
                   max={field.max}
                   value={radio}
