@@ -117,7 +117,7 @@ export const postMutation = (type, setEditStates, data, index) => {
     case "login":
       Auth.login(data.login.token);
       break;
-    case "sign-up":
+    case "signup":
       Auth.login(data.addUser.token);
       break;
     case "edit":

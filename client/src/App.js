@@ -12,7 +12,6 @@ import "./assets/styles/App.css";
 // pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Workout from "./pages/Workout";
 import Page404 from "./pages/Page404";
@@ -63,8 +62,8 @@ function App() {
               <Route path="" element={<Profile setMain={setMain} />} />
             </Route>
             <Route path="/workout/:id" element={<Workout setMain={setMain} />} />
-            <Route path="/login" element={<Login setMain={setMain} />} />
-            <Route path="/signup" element={<Signup setMain={setMain} />} />
+            <Route path="/login" element={<Login setMain={setMain} type={"login"}/>} />
+            <Route path="/signup" element={<Login setMain={setMain} type={"signup"}/>} />
             <Route path="*" element={<Page404 setMain={setMain} />} />
           </Routes>
         </main>

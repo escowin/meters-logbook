@@ -13,8 +13,7 @@ import {
 function Form(props) {
   const { initialValues, setEditStates, doc, type, className, index } = props;
   // Conditionally handling to account for unique mutations
-  const fields =
-    type === "login" || type === "sign-up" ? form[type] : form[doc];
+  const fields = type === "login" || type === "signup" ? form[type] : form[doc];
 
   // Server-related variables
   // - Variable is a dynamically defined GraphQL schema object
@@ -153,7 +152,6 @@ function Form(props) {
 
   // Dynamically renders scalable UI elements & attributes
   return (
-    // <section className={"form-section"} id={`${type}-${doc}-section`}>
     <form
       className={`${doc}-form ${className}`}
       id={`${type}-${doc}`}
@@ -164,7 +162,6 @@ function Form(props) {
       <button type="submit">submit</button>
       {error && <span>{type} failed</span>}
     </form>
-    // {/* </section> */}
   );
 }
 
