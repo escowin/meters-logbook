@@ -5,9 +5,9 @@ import "../assets/styles/login.css";
 function Signup({ setMain }) {
   useEffect(() => setMain("login"), [setMain]);
   return (
-    <>
+    <section className={"form-section"}>
       <Form type={"signup"} doc={"user"} className={"login-form"} />
-    </>
+    </section>
   );
 }
 export default Signup;
